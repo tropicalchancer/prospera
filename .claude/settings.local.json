@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebSearch",
+      "WebFetch(domain:www.prospera.co)",
+      "WebFetch(domain:www.astralcodexten.com)",
+      "WebFetch(domain:globalwealthprotection.com)"
+    ]
+  }
+}

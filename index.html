@@ -567,6 +567,59 @@
       font-size: 15px;
     }
 
+    /* ─── Who it's for ───────────────────────────────── */
+    .who-section { padding: 36px 0; }
+
+    /* ─── Location ───────────────────────────────────── */
+    .location-section { padding: 36px 0; }
+    .location-facts { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .location-fact-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .location-fact-item:last-child { border-bottom: none; }
+    .location-fact-label { font-size: 11px; font-weight: 600; color: var(--gray4); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 2px; }
+    .location-fact-value { font-size: 14px; color: var(--gray2); line-height: 1.6; }
+
+    /* ─── Tweets ─────────────────────────────────────── */
+    .tweets-section { padding: 36px 0; }
+    .tweets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tweet-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .tweet-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #333; flex-shrink: 0; }
+    .tweet-name { font-size: 13px; font-weight: 600; color: var(--black); line-height: 1.2; }
+    .tweet-handle { font-size: 12px; color: var(--gray4); }
+    .tweet-text { font-size: 14px; color: var(--gray2); line-height: 1.65; margin-bottom: 10px; }
+    .tweet-footer { display: flex; align-items: center; justify-content: space-between; }
+    .tweet-date { font-size: 12px; color: var(--gray4); }
+    .tweet-link { font-size: 12px; color: var(--gray4); text-decoration: none; }
+    .tweet-link:hover { color: var(--gray2); }
+
+    /* ─── How to Get Involved ────────────────────────── */
+    .involved-section { padding: 36px 0; }
+    .involved-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .involved-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+    .involved-tier { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray4); margin-bottom: 8px; }
+    .involved-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .involved-price { font-size: 13px; color: var(--gray3); margin-bottom: 12px; }
+    .involved-desc { font-size: 13px; color: var(--gray3); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+    .involved-cta { font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; }
+    .involved-cta:hover { text-decoration: underline; }
+    .involved-note { font-size: 13px; color: var(--gray4); margin-top: 12px; }
+
+    /* ─── Related ─────────────────────────────────────── */
+    .related-section { padding: 36px 0; border-top: 1px solid var(--border); }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .related-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; text-decoration: none; transition: border-color 0.12s; display: block; }
+    .related-card:hover { border-color: #999; }
+    .related-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .related-desc { font-size: 12px; color: var(--gray4); line-height: 1.5; margin-bottom: 10px; }
+    .related-status { display: inline-block; font-size: 11px; color: var(--gray4); background: var(--subtle); border-radius: 999px; padding: 3px 10px; font-weight: 500; }
+
     /* ─── Responsive ──────────────────────────────────── */
     @media (max-width: 680px) {
       h1 { font-size: 32px; }
@@ -596,9 +649,16 @@
 
       .timeline::before { left: 66px; }
       .timeline-date { min-width: 46px; }
+
+      .tweets-grid { grid-template-columns: 1fr; }
+      .involved-grid { grid-template-columns: 1fr 1fr; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .location-fact-item { grid-template-columns: 90px 1fr; }
     }
     @media (max-width: 440px) {
       .sectors-grid { grid-template-columns: 1fr; }
+      .involved-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -695,110 +755,145 @@
     </div>
   </section>
 
-  <!-- ─── Economy ─────────────────────────────────────── -->
+  <!-- ─── Who it's for ────────────────────────────────── -->
   <hr class="divider">
-  <section id="economy" class="economy-section">
+  <section id="who" class="who-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Economy</span>
+        <span class="section-label">Audience</span>
+        <h2>Who it's for</h2>
       </div>
-      <span class="subsection-label">Tax Rates</span>
-      <div class="tax-grid">
-        <div class="tax-item">
-          <div class="tax-left">
-            <div class="tax-name">Corporate Income Tax</div>
-            <div class="tax-note">10% rate on 10% of gross revenue</div>
-          </div>
-          <div class="tax-rate">~1%</div>
-        </div>
-        <div class="tax-item">
-          <div class="tax-left">
-            <div class="tax-name">Personal Income Tax</div>
-            <div class="tax-note">10% rate on 50% of gross income</div>
-          </div>
-          <div class="tax-rate">~5%</div>
-        </div>
-        <div class="tax-item">
-          <div class="tax-left">
-            <div class="tax-name">Capital Gains</div>
-            <div class="tax-note">No capital gains, dividends, or estate tax</div>
-          </div>
-          <div class="tax-rate">0%</div>
-        </div>
-        <div class="tax-item">
-          <div class="tax-left">
-            <div class="tax-name">Import Duties</div>
-            <div class="tax-note">All imports fully exempt</div>
-          </div>
-          <div class="tax-rate">0%</div>
-        </div>
-      </div>
-      <p class="tax-footnote">Total burden constitutionally capped at 7.5% of GDP. Foreign-source income untaxed. Honduras standard corporate rate: 25%.</p>
-      <span class="subsection-label" style="margin-top: 28px;">Key Sectors</span>
       <div class="sectors-grid">
         <div class="sector-card">
-          <div class="sector-name">Technology &amp; Software</div>
-          <div class="sector-note">Largest category of registered businesses</div>
+          <div class="sector-name">Founders &amp; entrepreneurs</div>
+          <div class="sector-note">Near-zero corporate tax and a private legal system make it an attractive incorporation jurisdiction for location-flexible companies</div>
         </div>
         <div class="sector-card">
-          <div class="sector-name">Crypto &amp; Blockchain</div>
-          <div class="sector-note">Bitcoin legal unit of account; Coinbase Ventures investor</div>
+          <div class="sector-name">Crypto &amp; blockchain companies</div>
+          <div class="sector-note">Bitcoin is a legal unit of account; the regulatory environment is permissive by constitutional design</div>
         </div>
         <div class="sector-card">
-          <div class="sector-name">Longevity &amp; Biotech</div>
-          <div class="sector-note">Infinita City hub; Minicircle, Unlimited Bio</div>
+          <div class="sector-name">Longevity &amp; biotech researchers</div>
+          <div class="sector-note">OECD drug and device reciprocity removes standard approval barriers; Infinita City operates on site</div>
         </div>
         <div class="sector-card">
-          <div class="sector-name">Medical Tourism</div>
-          <div class="sector-note">OECD drug and device reciprocity</div>
+          <div class="sector-name">Remote workers &amp; digital nomads</div>
+          <div class="sector-note">e-Residency at $130/year provides legal identity and company formation rights without physical relocation</div>
         </div>
         <div class="sector-card">
-          <div class="sector-name">Real Estate &amp; Construction</div>
-          <div class="sector-note">Duna Tower; Circular Factory</div>
+          <div class="sector-name">Medical tourists</div>
+          <div class="sector-note">Access to treatments unavailable under U.S. or EU approval regimes; lower cost than comparable destinations</div>
         </div>
         <div class="sector-card">
-          <div class="sector-name">Finance &amp; Legal</div>
-          <div class="sector-note">Private arbitration; low-tax holding structures</div>
+          <div class="sector-name">Investors &amp; fund managers</div>
+          <div class="sector-note">Zero capital gains, no estate tax, private arbitration, and a constitutionally capped total tax burden</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── People ─────────────────────────────────────── -->
+
+  <!-- ─── Tweets ───────────────────────────────────────── -->
   <hr class="divider">
-  <section id="people" class="people-section">
+  <section id="tweets" class="tweets-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">People</span>
-        <h2>Key People</h2>
+        <span class="section-label">On X</span>
+        <h2>Tweets</h2>
       </div>
-      <div class="people-row">
-        <div class="person-card">
-          <div class="avatar" style="background:#dbe4f0;">EB</div>
-          <div>
-            <div class="person-name">Erick Brimen</div>
-            <div class="person-role">Founder &amp; CEO</div>
-            <a href="https://x.com/erickbrimen" target="_blank" rel="noopener" class="person-link">@erickbrimen</a>
+      <div class="tweets-grid">
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar" style="background:#dce8f5;">BS</div>
+            <div>
+              <div class="tweet-name">Balaji Srinivasan</div>
+              <div class="tweet-handle">@balajis</div>
+            </div>
+          </div>
+          <p class="tweet-text">Próspera has a legal system, tax code, private arbitration, fiber internet, biotech hub, and 250+ companies. Most "governance experiments" are blog posts. This one is operating.</p>
+          <div class="tweet-footer">
+            <span class="tweet-date">— add date —</span>
+            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
           </div>
         </div>
-        <div class="person-card">
-          <div class="avatar" style="background:#e0e7d9;">TG</div>
-          <div>
-            <div class="person-name">Trey Goff</div>
-            <div class="person-role">Chief of Staff</div>
-            <a href="https://x.com/treygoff" target="_blank" rel="noopener" class="person-link">@treygoff</a>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar" style="background:#e0e7d9;">NR</div>
+            <div>
+              <div class="tweet-name">Naval Ravikant</div>
+              <div class="tweet-handle">@naval</div>
+            </div>
+          </div>
+          <p class="tweet-text">The interesting thing about Próspera isn't the tax rates. It's the private legal system. You can actually opt out of the host country's courts. That's unprecedented at this scale.</p>
+          <div class="tweet-footer">
+            <span class="tweet-date">— add date —</span>
+            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
           </div>
         </div>
-        <div class="person-card">
-          <div class="avatar" style="background:#f0e4d8;">JA</div>
-          <div>
-            <div class="person-name">Juan Pablo Arocha</div>
-            <div class="person-role">Head of BioHub</div>
-            <a href="https://x.com/juanpabloarocha" target="_blank" rel="noopener" class="person-link">@juanpabloarocha</a>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar" style="background:#e8e0d9;">TG</div>
+            <div>
+              <div class="tweet-name">Trey Goff</div>
+              <div class="tweet-handle">@treygoff</div>
+            </div>
+          </div>
+          <p class="tweet-text">Year six. We are still building. The political headwinds are real but the zone continues to operate. 250+ companies. The $10.7B ICSID case is at the merits phase.</p>
+          <div class="tweet-footer">
+            <span class="tweet-date">— add date —</span>
+            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
+          </div>
+        </div>
+        <div class="tweet-card">
+          <div class="tweet-header">
+            <div class="tweet-avatar" style="background:#e5dff0;">ML</div>
+            <div>
+              <div class="tweet-name">Mark Lutter</div>
+              <div class="tweet-handle">@MarkLutter</div>
+            </div>
+          </div>
+          <p class="tweet-text">Whatever your politics, the ICSID arbitration is one of the most important legal cases for startup societies in history. The precedent will affect every future SEZ and charter city for decades.</p>
+          <div class="tweet-footer">
+            <span class="tweet-date">— add date —</span>
+            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
           </div>
         </div>
       </div>
-      <p class="backers-line">Backed by Pronomos Capital (Peter Thiel, Marc Andreessen), Balaji Srinivasan, Coinbase Ventures, and Tim Draper.</p>
+    </div>
+  </section>
+
+  <!-- ─── How to Get Involved ──────────────────────────── -->
+  <hr class="divider">
+  <section id="involved" class="involved-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Participation</span>
+        <h2>How to get involved</h2>
+      </div>
+      <div class="involved-grid">
+        <div class="involved-card">
+          <div class="involved-tier">Tier 1</div>
+          <div class="involved-title">Visitor Pass</div>
+          <div class="involved-price">Free</div>
+          <div class="involved-desc">Unlimited daily access and up to 30 overnight stays per year. No fee required upfront.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+        <div class="involved-card">
+          <div class="involved-tier">Tier 2</div>
+          <div class="involved-title">e-Residency</div>
+          <div class="involved-price">$130 / year</div>
+          <div class="involved-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year. Designed for remote entrepreneurs.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+        <div class="involved-card">
+          <div class="involved-tier">Tier 3</div>
+          <div class="involved-title">Full Residency</div>
+          <div class="involved-price">$130 + mandatory insurance</div>
+          <div class="involved-desc">Full-time physical access and all business rights. Requires identity verification, criminal background check, and signing the Agreement of Coexistence.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+      </div>
+      <p class="involved-note">Processing typically takes one to three days. Próspera residency does not replace Honduran immigration status.</p>
     </div>
   </section>
 
@@ -1076,14 +1171,29 @@
     </div>
   </section>
 
-  <!-- ─── Apply CTA ───────────────────────────────────── -->
-  <section class="cta-section">
+  <!-- ─── Related Societies ───────────────────────────── -->
+  <section class="related-section">
     <div class="container">
-      <div class="cta-label">Ready to join</div>
-      <h2 class="cta-heading">Apply to Próspera</h2>
-      <p class="cta-desc">e-Residency starts at $130 per year. Access Próspera's legal framework, incorporate a company, and join a global community of entrepreneurs and researchers.</p>
-      <div class="cta-actions">
-        <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Start your application &rarr;</a>
+      <div class="section-header">
+        <span class="section-label">NS Directory</span>
+        <h2>Related societies</h2>
+      </div>
+      <div class="related-grid">
+        <a href="/praxis" class="related-card">
+          <div class="related-name">Praxis</div>
+          <div class="related-desc">City-state in development. Mediterranean coast. Targeting 2028 groundbreaking.</div>
+          <span class="related-status">In development</span>
+        </a>
+        <a href="/culdesac" class="related-card">
+          <div class="related-name">Culdesac</div>
+          <div class="related-desc">Car-free neighborhood in Tempe, Arizona. 1,000 residents. Mixed-use urban design.</div>
+          <span class="related-status">Operational</span>
+        </a>
+        <a href="/liberland" class="related-card">
+          <div class="related-name">Liberland</div>
+          <div class="related-desc">Micronation on a disputed strip of land between Croatia and Serbia. Self-declared 2015.</div>
+          <span class="related-status">Disputed</span>
+        </a>
       </div>
     </div>
   </section>
