@@ -459,19 +459,7 @@
     }
     .link-row:last-child { border-bottom: none; }
     .link-row:hover { background: var(--subtle); }
-    .link-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--subtle);
-      border-radius: 9px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--gray3);
-    }
+    .link-icon { display: none; }
     .link-text { flex: 1; min-width: 0; }
     .link-title { font-size: 14px; font-weight: 500; color: var(--black); line-height: 1.3; }
     .link-desc { font-size: 12px; color: var(--gray4); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -983,13 +971,6 @@
         <h2>Links</h2>
       </div>
 
-      <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all" onclick="filterLinks('all')">All</button>
-        <button class="filter-tab" data-filter="official" onclick="filterLinks('official')">Official</button>
-        <button class="filter-tab" data-filter="analysis" onclick="filterLinks('analysis')">Analysis</button>
-        <button class="filter-tab" data-filter="media" onclick="filterLinks('media')">Media</button>
-        <button class="filter-tab" data-filter="community" onclick="filterLinks('community')">Community</button>
-      </div>
 
       <div class="links-list" id="links-list">
 
@@ -1029,59 +1010,7 @@
           <span class="link-chevron">›</span>
         </a>
 
-        <a href="https://foreignpolicy.com/2024/01/24/honduras-zedes-us-prospera-world-bank-biden-boston/" target="_blank" rel="noopener" class="link-row" data-category="analysis">
-          <div class="link-icon">FP</div>
-          <div class="link-text">
-            <div class="link-title">U.S. Investors Could Bankrupt Honduras</div>
-            <div class="link-desc">Foreign Policy &middot; Jan 2024 &middot; Geopolitical framing of the ICSID arbitration</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
 
-        <a href="https://goodauthority.org/news/freedom-city-charter-city-prospera-zede-honduras/" target="_blank" rel="noopener" class="link-row" data-category="analysis">
-          <div class="link-icon">GA</div>
-          <div class="link-text">
-            <div class="link-title">You Want to Live in a Freedom City?</div>
-            <div class="link-desc">Good Authority &middot; Academic and policy critique</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
-
-        <a href="https://www.bloomberg.com/news/features/2025-02-13/a-honduras-dream-city-now-faces-11-billion-political-dispute" target="_blank" rel="noopener" class="link-row" data-category="media">
-          <div class="link-icon">BB</div>
-          <div class="link-text">
-            <div class="link-title">A Honduras Dream City Now Faces $11 Billion Dispute</div>
-            <div class="link-desc">Bloomberg &middot; Feb 2025 &middot; Best current-state overview</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
-
-        <a href="https://restofworld.org/2021/honduran-islanders-push-back-libertarian-startup/" target="_blank" rel="noopener" class="link-row" data-category="media">
-          <div class="link-icon">RW</div>
-          <div class="link-text">
-            <div class="link-title">Honduran Islanders Push Back on Próspera</div>
-            <div class="link-desc">Rest of World &middot; 2021 &middot; Ground-level reporting from Crawfish Rock</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
-
-        <a href="https://www.technologyreview.com/2023/02/13/1068330/minicircle-prospera-honduras-biohacking-follistatin-gene-therapy/" target="_blank" rel="noopener" class="link-row" data-category="media">
-          <div class="link-icon">MT</div>
-          <div class="link-text">
-            <div class="link-title">Inside the Unregulated Gene Therapy Trials</div>
-            <div class="link-desc">MIT Technology Review &middot; Feb 2023 &middot; Minicircle investigation</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
-
-        <a href="https://en.wikipedia.org/wiki/Pr%C3%B3spera" target="_blank" rel="noopener" class="link-row" data-category="media">
-          <div class="link-icon">WP</div>
-          <div class="link-text">
-            <div class="link-title">Próspera on Wikipedia</div>
-            <div class="link-desc">wikipedia.org</div>
-          </div>
-          <span class="link-chevron">›</span>
-        </a>
 
         <a href="https://www.infinita.city/" target="_blank" rel="noopener" class="link-row" data-category="community">
           <div class="link-icon">IN</div>
@@ -1226,20 +1155,6 @@
       if (!isOpen) item.classList.add('open');
     }
 
-    // ─── Links filter ────────────────────────────────
-    function filterLinks(category) {
-      document.querySelectorAll('.filter-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.filter === category);
-      });
-      const rows = document.querySelectorAll('.link-row');
-      rows.forEach(row => {
-        row.style.display = (category === 'all' || row.dataset.category === category) ? 'flex' : 'none';
-        row.style.borderBottom = '1px solid #e8e8e8';
-      });
-      let last = null;
-      rows.forEach(row => { if (row.style.display !== 'none') last = row; });
-      if (last) last.style.borderBottom = 'none';
-    }
 
     // ─── Mobile CTA: show after hero scrolls away ────
     const mobileCta = document.getElementById('mobile-cta');
