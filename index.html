@@ -299,6 +299,23 @@
       aspect-ratio: 4 / 3;
       background-size: cover;
       background-position: center;
+      cursor: zoom-in;
+    }
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-lightbox.open { display: flex; }
+    .photo-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      object-fit: contain;
     }
 
     /* ─── Economy ────────────────────────────────────── */
@@ -1085,52 +1102,53 @@
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            What is a ZEDE?
+            What is Próspera?
             <span class="faq-indicator">+</span>
           </button>
           <div class="faq-answer">
-            <p>A ZEDE (Zona de Empleo y Desarrollo Económico) is a special autonomous jurisdiction created by Honduras's 2013 constitutional amendments, with its own legal code, tax system, and governance structure independent of Honduran national administration. Three were established before the law was repealed in 2022. Honduras's Supreme Court declared all ZEDEs retroactively unconstitutional in September 2024; that ruling is disputed by Próspera in ongoing ICSID arbitration.</p>
+            <p>Próspera is a private charter city on the island of Roatán, Honduras. Founded in 2017 under Honduras's ZEDE law (Zona de Empleo y Desarrollo Económico), it operates as a special jurisdiction with its own legal code, tax structure, and governance independent of Honduran national administration. It is developed by Honduras Próspera Inc. and designed as a platform for business formation, residency, and innovation in sectors like biotech, crypto, and medical services.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            What is Próspera's current legal status?
+            How do I become a resident or start a business there?
             <span class="faq-indicator">+</span>
           </button>
           <div class="faq-answer">
-            <p>Contested. Honduras repealed the ZEDE law in April 2022 and the Supreme Court declared all ZEDEs unconstitutional in September 2024. Próspera disputes retroactive application, citing a 50-year contractual stability agreement, and continues to operate on Roatán. An ICSID arbitration case under CAFTA-DR survived preliminary objections in February 2025. The political environment improved in early 2026 when President Asfura, more business-friendly toward ZEDEs, took office.</p>
+            <p>Próspera offers three tiers of access. A Visitor Pass (free) allows unlimited daily access and 30 overnight stays per year. E-Residency ($130/year) provides a digital identity and business formation rights for remote entrepreneurs. Full Residency ($130/year plus mandatory insurance) grants full-time access and all business rights.</p>
+            <p>Apply at eprospera.hn. The process requires identity verification, a background check, and signing the Agreement of Coexistence. Processing typically takes one to three days.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            How do I become a resident or e-resident?
+            What are the tax and regulatory conditions?
             <span class="faq-indicator">+</span>
           </button>
           <div class="faq-answer">
-            <p>There are three tiers. A Visitor Pass (free) allows unlimited daily access and 30 overnight stays per year. e-Residency ($130/year) provides digital identity and business formation rights with up to 30 days physical presence, designed for remote entrepreneurs. Full Residency ($130 plus mandatory insurance) grants full-time access and all business rights.</p>
-            <p>Apply at eprospera.hn. Requires identity verification, a criminal background check, and signing the "Agreement of Coexistence." Processing typically takes one to three days. Próspera residency does not replace Honduran immigration status.</p>
+            <p>The corporate income tax rate is approximately 10%, compared to Honduras's standard 25%. There is no capital gains tax, no wealth tax, and no personal income tax on income sourced outside Próspera. Business formation can be completed online in under 24 hours.</p>
+            <p>The legal system is common law-based and allows parties to select courts in the Cayman Islands or Delaware as dispute resolution forums. The regulatory framework is designed to be permissive for emerging industries, including longevity medicine, biotech, and digital assets.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            What is the $10.7 billion lawsuit?
+            What companies and sectors are based there?
             <span class="faq-indicator">+</span>
           </button>
           <div class="faq-answer">
-            <p>In December 2022, Honduras Próspera Inc. filed ICSID Case No. ARB/23/2 under CAFTA-DR, claiming the repeal of the ZEDE law constituted unlawful expropriation. The $10.775 billion figure represents claimed future lost returns and equals roughly one-third of Honduras's annual GDP. Critics have called it an overreach of investor-state dispute mechanisms. The case is at the merits phase as of early 2026.</p>
+            <p>Over 250 companies have incorporated in Próspera as of 2025. Active sectors include crypto and fintech, longevity and biotech research, medical tourism, real estate development, and financial services. Coinbase invested in 2025. Minicircle operates a gene therapy clinic on site. The campus includes Próspera Residences, a hotel and co-working complex, and a medical center under development.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            What are the main criticisms?
+            What is the current legal and political situation?
             <span class="faq-indicator">+</span>
           </button>
           <div class="faq-answer">
-            <p>The main criticisms are: sovereignty (a Delaware-incorporated company exercises government-like powers over Honduran territory without meaningful democratic oversight); indigenous land rights (the fishing village of Crawfish Rock was not properly consulted, and water access disputes emerged in 2019); regulatory risk (Minicircle's unregulated gene therapy trials showed how the permissive environment can be misused); and ISDS overreach (a $10.775 billion claim against a country whose annual budget is roughly $16 billion).</p>
+            <p>Honduras repealed the ZEDE law in April 2022 and the Supreme Court declared the zones unconstitutional in September 2024. Próspera disputes retroactive application, citing a 50-year contractual stability agreement, and continues to operate on Roatán. The company filed an ICSID arbitration case under CAFTA-DR in late 2022, which survived preliminary objections in February 2025 and is now at the merits phase. The political environment shifted in early 2026 when President Asfura, who is more favorable toward the zones, took office.</p>
           </div>
         </div>
 
@@ -1254,7 +1272,25 @@
       }, { threshold: 0 });
       heroObserver.observe(heroEl);
     }
+    // ─── Photo lightbox ───────────────────────────────
+    document.querySelectorAll('.photo-item').forEach(function(item) {
+      item.addEventListener('dblclick', function() {
+        var url = item.style.backgroundImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+        var lb = document.getElementById('photo-lightbox');
+        lb.querySelector('img').src = url;
+        lb.classList.add('open');
+      });
+    });
+
+    document.getElementById('photo-lightbox').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
   </script>
+
+  <div class="photo-lightbox" id="photo-lightbox">
+    <img src="" alt="Photo enlarged">
+  </div>
 
 </body>
 </html>
