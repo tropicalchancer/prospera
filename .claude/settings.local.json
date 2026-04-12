@@ -5,7 +5,8 @@
       "WebSearch",
       "WebFetch(domain:www.prospera.co)",
       "WebFetch(domain:www.astralcodexten.com)",
-      "WebFetch(domain:globalwealthprotection.com)"
+      "WebFetch(domain:globalwealthprotection.com)",
+      "WebFetch(domain:ns.com)"
     ]
   }
 }

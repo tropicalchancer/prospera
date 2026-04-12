@@ -20,7 +20,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,7 +36,7 @@
       --border: #e8e8e8;
       --subtle: #f5f5f3;
       --white:  #fff;
-      --serif:  Georgia, 'Times New Roman', serif;
+      --serif:  'Source Serif 4', Georgia, serif;
       --sans:   'Inter', system-ui, -apple-system, sans-serif;
       --max:    860px;
     }
@@ -159,102 +159,113 @@
     /* ─── Hero ────────────────────────────────────────── */
     .hero { padding: 20px 0 36px; }
 
-    .hero-card {
-      position: relative;
-      height: 300px;
+    .hero-profile-card {
+      border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 24px;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
+
+    .hero-photo {
+      width: 100%;
+      height: 280px;
       background-image: url('prospera2.jpg');
       background-size: cover;
       background-position: center 60%;
     }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 50%, transparent 100%);
-    }
-    .hero-card-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 22px 26px;
-      z-index: 2;
-    }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
-    .hero-card-content .tag {
-      background: rgba(255,255,255,0.13);
-      border-color: rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.9);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-    .hero h1 { color: #fff; font-size: 44px; }
 
-    .hero-below {
+    .hero-info {
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 32px;
+      gap: 20px;
+      padding: 24px 26px;
     }
+
+    .hero-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-identity h1 {
+      font-size: 28px;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
     .hero-description {
       font-size: 15px;
       color: var(--gray2);
       line-height: 1.65;
-      flex: 1;
+      margin-bottom: 16px;
       max-width: 520px;
-      margin-bottom: 0;
     }
-    .hero-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
     /* ─── Stats ───────────────────────────────────────── */
     .stats-band {
-      padding: 20px 0;
+      padding: 36px 0;
     }
-    .stats-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gray4);
-      margin-bottom: 20px;
+    .stats-heading {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 28px;
     }
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 28px;
+    }
     .stat-item {
-      padding: 10px 20px 10px 0;
-      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    .stat-item:nth-child(3),
-    .stat-item:last-child { border-right: none; }
-    .stat-item:nth-child(n+4) {
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
-      margin-top: 8px;
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stat-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #888;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
     .stat-value {
       font-family: var(--serif);
-      font-size: 30px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 400;
       color: var(--black);
       line-height: 1.1;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .stat-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gray4);
+      font-size: 13px;
+      color: var(--gray3);
     }
 
     /* ─── Relevance ──────────────────────────────────── */
     .overview-section { padding: 36px 0; }
+    .overview-list { margin: 0; padding: 0; list-style: none; }
+    .overview-list li { font-size: 15px; color: var(--gray2); line-height: 1.5; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .overview-list li:first-child { border-top: 1px solid var(--border); }
     .relevance-section { padding: 36px 0; }
     .relevance-list {
       list-style: none;
@@ -277,14 +288,13 @@
       padding-top: 2px;
     }
 
-    /* ─── Photo grid ──────────────────────────────────── */
+    /* ─── Photo carousel ─────────────────────────────── */
     .photos-section { padding: 28px 0 36px; }
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
+    .photos-section .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .photos-track-wrap { overflow: hidden; }
+    .photos-track { display: flex; gap: 8px; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
     .photo-item {
+      flex-shrink: 0;
       border-radius: 12px;
       aspect-ratio: 4 / 3;
       background-size: cover;
@@ -579,10 +589,16 @@
     .location-fact-label { font-size: 11px; font-weight: 600; color: var(--gray4); text-transform: uppercase; letter-spacing: 0.06em; padding-top: 2px; }
     .location-fact-value { font-size: 14px; color: var(--gray2); line-height: 1.6; }
 
-    /* ─── Tweets ─────────────────────────────────────── */
+    /* ─── Posts carousel ─────────────────────────────── */
     .tweets-section { padding: 36px 0; }
-    .tweets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .tweet-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; text-decoration: none; transition: border-color 0.12s; }
+    .tweets-section .section-header { display: flex; align-items: center; justify-content: space-between; }
+    .carousel-controls { display: flex; gap: 6px; }
+    .carousel-btn { width: 32px; height: 32px; border: 1px solid var(--border); background: none; border-radius: 50%; cursor: pointer; font-size: 20px; line-height: 1; color: var(--gray2); display: flex; align-items: center; justify-content: center; transition: border-color 0.12s, color 0.12s; }
+    .carousel-btn:hover:not(:disabled) { border-color: #999; color: var(--black); }
+    .carousel-btn:disabled { opacity: 0.25; cursor: default; }
+    .tweets-track-wrap { overflow: hidden; }
+    .tweets-track { display: flex; gap: 8px; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .tweet-card { flex-shrink: 0; border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; text-decoration: none; transition: border-color 0.12s; }
     .tweet-card:hover { border-color: #999; }
     .tweet-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
     .tweet-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--subtle); }
@@ -594,15 +610,15 @@
 
     /* ─── How to Get Involved ────────────────────────── */
     .involved-section { padding: 36px 0; }
-    .involved-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .involved-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
-    .involved-tier { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray4); margin-bottom: 8px; }
-    .involved-title { font-size: 15px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
-    .involved-price { font-size: 13px; color: var(--gray3); margin-bottom: 12px; }
-    .involved-desc { font-size: 13px; color: var(--gray3); line-height: 1.6; flex: 1; margin-bottom: 16px; }
-    .involved-cta { font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; }
-    .involved-cta:hover { text-decoration: underline; }
-    .involved-note { font-size: 13px; color: var(--gray4); margin-top: 12px; }
+    .involved-list { border-top: 1px solid var(--border); }
+    .involved-row { display: grid; grid-template-columns: 150px 180px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+    .involved-name { font-size: 14px; font-weight: 500; color: var(--black); }
+    .involved-price { font-size: 14px; color: var(--gray3); }
+    .involved-desc { font-size: 14px; color: var(--gray3); line-height: 1.5; }
+    .involved-apply { margin-top: 18px; }
+    .involved-apply a { font-size: 14px; font-weight: 500; color: var(--black); text-decoration: none; }
+    .involved-apply a:hover { text-decoration: underline; }
+    .involved-note { font-size: 13px; color: var(--gray4); margin-top: 8px; }
 
 
     /* ─── Responsive ──────────────────────────────────── */
@@ -610,21 +626,19 @@
       h1 { font-size: 32px; }
       h2 { font-size: 24px; }
 
-      .hero-card { height: 240px; }
-      .hero h1 { font-size: 32px; }
-      .hero-below { flex-direction: column; gap: 18px; }
+      .hero-photo { height: 200px; }
+      .hero-identity h1 { font-size: 24px; }
+      .hero-info { gap: 14px; padding: 18px; }
+      .hero-logo { width: 52px; height: 52px; }
 
 
 
       .mobile-cta { display: block; }
       body { padding-bottom: 90px; }
 
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stat-item:nth-child(3) { border-right: 1px solid var(--border); }
-      .stat-item:nth-child(even) { border-right: none; }
-      .stat-item:nth-child(n+3) { border-top: 1px solid var(--border); padding-top: 18px; margin-top: 8px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; row-gap: 20px; }
+      .stats-heading { font-size: 22px; }
 
-      .photo-grid { grid-template-columns: 1fr; }
       .photo-item { aspect-ratio: 16 / 9; }
 
       .timeline-links-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -635,13 +649,14 @@
       .timeline::before { left: 66px; }
       .timeline-date { min-width: 46px; }
 
-      .tweets-grid { grid-template-columns: 1fr 1fr; }
-      .involved-grid { grid-template-columns: 1fr 1fr; }
+      .tweets-track { gap: 6px; }
+      .involved-row { grid-template-columns: 130px 1fr; }
+      .involved-row .involved-desc { grid-column: 1 / -1; padding-top: 0; }
       .location-fact-item { grid-template-columns: 90px 1fr; }
     }
     @media (max-width: 440px) {
       .sectors-grid { grid-template-columns: 1fr; }
-      .involved-grid { grid-template-columns: 1fr; }
+      .involved-row { grid-template-columns: 1fr; }
 
     }
   </style>
@@ -660,19 +675,17 @@
         <span>próspera</span>
       </nav>
 
-      <div class="hero-card">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-card-content">
-          <h1>Próspera</h1>
-        </div>
-      </div>
-
-      <div class="hero-below">
-        <p class="hero-description">A private <a href="https://grokipedia.com/page/charter_city_economic_development" target="_blank" rel="noopener">charter city</a> on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
-        <div class="hero-actions">
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
-          <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="btn-secondary">prospera.co</a>
+      <div class="hero-profile-card">
+        <div class="hero-photo"></div>
+        <div class="hero-info">
+          <div class="hero-logo">
+            <img src="prospera.jpg" alt="Próspera logo">
+          </div>
+          <div class="hero-identity">
+            <h1>Próspera</h1>
+            <p class="hero-description">A startup city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
+            <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
+          </div>
         </div>
       </div>
 
@@ -682,31 +695,61 @@
   <!-- ─── Stats ─────────────────────────────────────── -->
   <section class="stats-band">
     <div class="container">
-      <span class="stats-label">At a Glance</span>
+      <h2 class="stats-heading">At a glance</h2>
       <div class="stats-grid">
         <div class="stat-item">
-          <div class="stat-value">250+</div>
-          <div class="stat-label">Registered Companies</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">250+</div>
+            <div class="stat-label">Registered companies</div>
+          </div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">$100M+</div>
-          <div class="stat-label">Investment</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">$100M+</div>
+            <div class="stat-label">Investment</div>
+          </div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">1,000+</div>
-          <div class="stat-label">Acres</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">1,000+</div>
+            <div class="stat-label">Acres</div>
+          </div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">1,700+</div>
-          <div class="stat-label">Residents &amp; e-Residents</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">1,700+</div>
+            <div class="stat-label">Residents &amp; e-residents</div>
+          </div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">~1%</div>
-          <div class="stat-label">Corporate Tax (eff.)</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">~ 1%</div>
+            <div class="stat-label">Corporate tax</div>
+          </div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">2017</div>
-          <div class="stat-label">Founded</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">2017</div>
+            <div class="stat-label">Founded</div>
+          </div>
         </div>
       </div>
     </div>
@@ -718,25 +761,50 @@
   <section class="overview-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Overview</span>
         <h2>What is Próspera?</h2>
       </div>
-      <p>Próspera is a privately managed economic zone on the island of Roatán, Honduras. It operates with independent legal and tax systems to create a business-friendly environment.</p>
-      <p>Backed by prominent technology investors, Próspera attracts global entrepreneurs with near-zero corporate taxes, private dispute resolution, and a digital residency program for remote company formation.</p>
+      <ul class="overview-list">
+        <li>Privately operated, not government-run.</li>
+        <li>Pick your legal framework: US, Singapore, or custom.</li>
+        <li>Disputes via independent arbitrators, not Honduran courts.</li>
+        <li>Inside Honduras, outside its bureaucracy.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ─── Why it matters ──────────────────────────────── -->
+  <!-- ─── Who it's for ────────────────────────────────── -->
   <hr class="divider">
-  <section class="relevance-section">
+  <section id="who" class="who-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Network States</span>
-        <h2>Why it matters</h2>
+        <h2>Who it's for</h2>
       </div>
-      <p>Próspera is the most advanced working model of a privately governed city. Most similar concepts exist only on paper. Próspera operates today with physical infrastructure and an active legal system.</p>
-      <p>The project serves as a landmark legal test for the industry. The zone's ongoing international arbitration case will set a global precedent for how private startup societies protect their agreements when host governments attempt to change the rules.</p>
-      <p>It also highlights the impact of local politics. The recent shift to a supportive Honduran administration shows how heavily autonomous zones rely on the political climate of their host nations, driving the broader movement's interest in complete sovereignty.</p>
+      <div class="sectors-grid">
+        <div class="sector-card">
+          <div class="sector-name">Founders &amp; entrepreneurs</div>
+          <div class="sector-note">Low taxes and fast company setup.</div>
+        </div>
+        <div class="sector-card">
+          <div class="sector-name">Crypto &amp; blockchain teams</div>
+          <div class="sector-note">Bitcoin as legal tender and light rules.</div>
+        </div>
+        <div class="sector-card">
+          <div class="sector-name">Longevity &amp; biotech builders</div>
+          <div class="sector-note">Quick testing at Infinita City.</div>
+        </div>
+        <div class="sector-card">
+          <div class="sector-name">Remote workers &amp; nomads</div>
+          <div class="sector-note">e-Residency for $130/year.</div>
+        </div>
+        <div class="sector-card">
+          <div class="sector-name">Medical tourists</div>
+          <div class="sector-note">Access to treatments not available elsewhere.</div>
+        </div>
+        <div class="sector-card">
+          <div class="sector-name">Investors</div>
+          <div class="sector-note">No capital gains or estate tax, low overall burden.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -744,93 +812,21 @@
   <hr class="divider">
   <section class="photos-section">
     <div class="container">
-      <div class="photo-grid">
-        <div class="photo-item" style="background-image: url('prospera1.jpg');"></div>
-        <div class="photo-item" style="background-image: url('prospera3.jpg'); background-position: center center;"></div>
-      </div>
-    </div>
-  </section>
-  <hr class="divider">
-
-  <!-- ─── Who it's for ────────────────────────────────── -->
-  <section id="who" class="who-section">
-    <div class="container">
       <div class="section-header">
-        <span class="section-label">Audience</span>
-        <h2>Who it's for</h2>
-      </div>
-      <div class="sectors-grid">
-        <div class="sector-card">
-          <div class="sector-name">Founders &amp; entrepreneurs</div>
-          <div class="sector-note">Near-zero corporate tax and a private legal system make it an attractive incorporation jurisdiction for location-flexible companies</div>
-        </div>
-        <div class="sector-card">
-          <div class="sector-name">Crypto &amp; blockchain companies</div>
-          <div class="sector-note">Bitcoin is a legal unit of account; the regulatory environment is permissive by constitutional design</div>
-        </div>
-        <div class="sector-card">
-          <div class="sector-name">Longevity &amp; biotech researchers</div>
-          <div class="sector-note">OECD drug and device reciprocity removes standard approval barriers; Infinita City operates on site</div>
-        </div>
-        <div class="sector-card">
-          <div class="sector-name">Remote workers &amp; digital nomads</div>
-          <div class="sector-note">e-Residency at $130/year provides legal identity and company formation rights without physical relocation</div>
-        </div>
-        <div class="sector-card">
-          <div class="sector-name">Medical tourists</div>
-          <div class="sector-note">Access to treatments unavailable under U.S. or EU approval regimes; lower cost than comparable destinations</div>
-        </div>
-        <div class="sector-card">
-          <div class="sector-name">Investors &amp; fund managers</div>
-          <div class="sector-note">Zero capital gains, no estate tax, private arbitration, and a constitutionally capped total tax burden</div>
+        <h2>Photos</h2>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="photos-prev" onclick="shiftPhotos(-1)" aria-label="Previous" disabled>&#8249;</button>
+          <button class="carousel-btn" id="photos-next" onclick="shiftPhotos(1)" aria-label="Next">&#8250;</button>
         </div>
       </div>
-    </div>
-  </section>
-
-
-  <!-- ─── Tweets ───────────────────────────────────────── -->
-  <hr class="divider">
-  <section id="tweets" class="tweets-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">On X</span>
-        <h2>Tweets</h2>
-      </div>
-      <div class="tweets-grid">
-        <a href="https://x.com/balajis/status/ADD_BALAJI_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
-          <div class="tweet-header">
-            <img class="tweet-avatar" src="balaji.jpg" alt="Balaji Srinivasan">
-            <div class="tweet-meta">
-              <div class="tweet-name">Balaji Srinivasan</div>
-              <div class="tweet-handle">@balajis</div>
-            </div>
-          </div>
-          <p class="tweet-text">I just got back from Próspera. A startup city on the island of Roatán. It's crypto, it's bio, it's robo. And it's not San Francisco.</p>
-          <div class="tweet-footer">Feb 17, 2024</div>
-        </a>
-        <a href="https://x.com/brian_armstrong/status/1881807446710059020" target="_blank" rel="noopener" class="tweet-card">
-          <div class="tweet-header">
-            <img class="tweet-avatar" src="brian.jpg" alt="Brian Armstrong">
-            <div class="tweet-meta">
-              <div class="tweet-name">Brian Armstrong</div>
-              <div class="tweet-handle">@brian_armstrong</div>
-            </div>
-          </div>
-          <p class="tweet-text">We're excited to invest in @ProsperaGlobal which is creating special economic zones in various countries (the first one in Honduras, hopefully eventually in the U.S.).</p>
-          <div class="tweet-footer">Jan 21, 2025</div>
-        </a>
-        <a href="https://x.com/TimDraper/status/ADD_DRAPER_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
-          <div class="tweet-header">
-            <img class="tweet-avatar" src="tim.jpg" alt="Tim Draper">
-            <div class="tweet-meta">
-              <div class="tweet-name">Tim Draper</div>
-              <div class="tweet-handle">@TimDraper</div>
-            </div>
-          </div>
-          <p class="tweet-text">Trip to LATAM. Perspectives: Met with Prospera, Infinita in Honduras. Prospera is the best place to do business on the planet. The next Dubai.</p>
-          <div class="tweet-footer">Mar 12, 2025</div>
-        </a>
+      <div class="photos-track-wrap" id="photos-wrap">
+        <div class="photos-track" id="photos-track">
+          <div class="photo-item" style="background-image: url('prosperapeople.jpg');"></div>
+          <div class="photo-item" style="background-image: url('prospera1.jpg');"></div>
+          <div class="photo-item" style="background-image: url('prospera3.jpg'); background-position: center center;"></div>
+          <div class="photo-item" style="background-image: url('prosperacircular.jpg');"></div>
+          <div class="photo-item" style="background-image: url('infinitapeople.jpg');"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -840,8 +836,7 @@
   <section id="timeline" class="timeline-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">History</span>
-        <h2>Timeline</h2>
+        <h2>History</h2>
       </div>
       <div class="timeline">
 
@@ -849,8 +844,8 @@
           <div class="timeline-date">2013</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">ZEDE law enacted</div>
-            <div class="timeline-detail">Honduras passes constitutional amendments enabling autonomous economic zones, loosely inspired by Paul Romer's charter city concept. Romer later resigns from the advisory committee and repudiates the implementation.</div>
+            <div class="timeline-title">ZEDE Law Enacted</div>
+            <div class="timeline-detail">Honduras creates the legal framework for autonomous economic zones.</div>
           </div>
         </div>
 
@@ -858,44 +853,44 @@
           <div class="timeline-date">2017</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">Próspera ZEDE founded</div>
-            <div class="timeline-detail">Honduras Próspera Inc. signs its government agreement, becoming the first ZEDE. Pronomos Capital provides initial funding.</div>
+            <div class="timeline-title">Próspera Founded</div>
+            <div class="timeline-detail">Próspera ZEDE is established on Roatán as one of the first operational zones.</div>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">Apr 2022</div>
+          <div class="timeline-date">2020</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">Honduras repeals ZEDE law</div>
-            <div class="timeline-detail">Incoming President Xiomara Castro's congress votes unanimously to repeal the enabling legislation, citing sovereignty and lack of indigenous consent. Próspera asserts a 50-year contractual stability clause and continues operating.</div>
+            <div class="timeline-title">First Residents &amp; Businesses</div>
+            <div class="timeline-detail">Próspera welcomes its first residents and businesses.</div>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">Dec 2022</div>
+          <div class="timeline-date">2021</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">$10.775B ICSID arbitration filed</div>
-            <div class="timeline-detail">Honduras Próspera Inc. files ICSID Case No. ARB/23/2 under CAFTA-DR, alleging unlawful expropriation. The claim equals roughly one-third of Honduras's annual GDP.</div>
+            <div class="timeline-title">e-Residency Launch</div>
+            <div class="timeline-detail">Próspera introduces its e-Residency program and begins rapid business growth.</div>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">Sep 2024</div>
+          <div class="timeline-date">2022</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">Honduras Supreme Court rules ZEDEs unconstitutional</div>
-            <div class="timeline-detail">The Court unanimously declares all ZEDEs retroactively unconstitutional. Próspera disputes the retroactive application and continues to operate.</div>
+            <div class="timeline-title">ZEDE Law Repealed</div>
+            <div class="timeline-detail">The Honduran government repeals the ZEDE law, creating legal uncertainty.</div>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">Feb 2025</div>
+          <div class="timeline-date">Dec 2024</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">Arbitration survives preliminary objections</div>
-            <div class="timeline-detail">The ICSID Tribunal rejects Honduras's preliminary objections; the case proceeds to the merits phase.</div>
+            <div class="timeline-title">Growth Milestone</div>
+            <div class="timeline-detail">Próspera reaches 250 incorporated companies and resumes e-Residency applications.</div>
           </div>
         </div>
 
@@ -903,11 +898,75 @@
           <div class="timeline-date">Jan 2026</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-title">President Asfura inaugurated; Honduras rejoins ICSID</div>
-            <div class="timeline-detail">More business-friendly Nasry Asfura takes office. Honduras rejoins ICSID, reversing Castro's 2024 withdrawal.</div>
+            <div class="timeline-title">New Government</div>
+            <div class="timeline-detail">A more business-friendly administration takes office, improving the outlook for Próspera.</div>
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ─── Tweets ───────────────────────────────────────── -->
+  <hr class="divider">
+  <section id="tweets" class="tweets-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Posts</h2>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="posts-prev" onclick="shiftPosts(-1)" aria-label="Previous" disabled>&#8249;</button>
+          <button class="carousel-btn" id="posts-next" onclick="shiftPosts(1)" aria-label="Next">&#8250;</button>
+        </div>
+      </div>
+      <div class="tweets-track-wrap" id="tweets-wrap">
+        <div class="tweets-track" id="tweets-track">
+          <a href="https://x.com/kunley_drukpa/status/1997860208245133664?s=20" target="_blank" rel="noopener" class="tweet-card">
+            <div class="tweet-header">
+              <img class="tweet-avatar" src="kunley.jpg" alt="Kunley Drukpa">
+              <div class="tweet-meta">
+                <div class="tweet-name">Kunley Drukpa</div>
+                <div class="tweet-handle">@kunley_drukpa</div>
+              </div>
+            </div>
+            <p class="tweet-text">Within the space of less than a decade there has somehow emerged the foundations for an advanced wealthy high human capital city state in the tropics.</p>
+            <div class="tweet-footer">Dec 2025</div>
+          </a>
+          <a href="https://x.com/TimDraper/status/ADD_DRAPER_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
+            <div class="tweet-header">
+              <img class="tweet-avatar" src="tim.jpg" alt="Tim Draper">
+              <div class="tweet-meta">
+                <div class="tweet-name">Tim Draper</div>
+                <div class="tweet-handle">@TimDraper</div>
+              </div>
+            </div>
+            <p class="tweet-text">Trip to LATAM. Perspectives: Met with Prospera, Infinita in Honduras. Prospera is the best place to do business on the planet. The next Dubai.</p>
+            <div class="tweet-footer">Mar 12, 2025</div>
+          </a>
+          <a href="https://x.com/brian_armstrong/status/1881807446710059020" target="_blank" rel="noopener" class="tweet-card">
+            <div class="tweet-header">
+              <img class="tweet-avatar" src="brian.jpg" alt="Brian Armstrong">
+              <div class="tweet-meta">
+                <div class="tweet-name">Brian Armstrong</div>
+                <div class="tweet-handle">@brian_armstrong</div>
+              </div>
+            </div>
+            <p class="tweet-text">We're excited to invest in @ProsperaGlobal which is creating special economic zones in various countries (the first one in Honduras, hopefully eventually in the U.S.).</p>
+            <div class="tweet-footer">Jan 21, 2025</div>
+          </a>
+          <a href="https://x.com/balajis/status/ADD_BALAJI_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
+            <div class="tweet-header">
+              <img class="tweet-avatar" src="balaji.jpg" alt="Balaji Srinivasan">
+              <div class="tweet-meta">
+                <div class="tweet-name">Balaji Srinivasan</div>
+                <div class="tweet-handle">@balajis</div>
+              </div>
+            </div>
+            <p class="tweet-text">I just got back from Próspera. A startup city on the island of Roatán. It's crypto, it's bio, it's robo. And it's not San Francisco.</p>
+            <div class="tweet-footer">Feb 17, 2024</div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -917,31 +976,27 @@
   <section id="involved" class="involved-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Participation</span>
         <h2>How to get involved</h2>
       </div>
-      <div class="involved-grid">
-        <div class="involved-card">
-          <div class="involved-tier">Tier 1</div>
-          <div class="involved-title">Visitor Pass</div>
+      <div class="involved-list">
+        <div class="involved-row">
+          <div class="involved-name">Visitor Pass</div>
           <div class="involved-price">Free</div>
-          <div class="involved-desc">Unlimited daily access and up to 30 overnight stays per year. No fee required upfront.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+          <div class="involved-desc">Unlimited daily access and up to 30 overnight stays per year.</div>
         </div>
-        <div class="involved-card">
-          <div class="involved-tier">Tier 2</div>
-          <div class="involved-title">e-Residency</div>
+        <div class="involved-row">
+          <div class="involved-name">e-Residency</div>
           <div class="involved-price">$130 / year</div>
-          <div class="involved-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year. Designed for remote entrepreneurs.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+          <div class="involved-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year.</div>
         </div>
-        <div class="involved-card">
-          <div class="involved-tier">Tier 3</div>
-          <div class="involved-title">Full Residency</div>
-          <div class="involved-price">$130 + mandatory insurance</div>
-          <div class="involved-desc">Full-time physical access and all business rights. Requires identity verification, criminal background check, and signing the Agreement of Coexistence.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        <div class="involved-row">
+          <div class="involved-name">Full Residency</div>
+          <div class="involved-price">$130 + insurance</div>
+          <div class="involved-desc">Full-time physical access and all business rights.</div>
         </div>
+      </div>
+      <div class="involved-apply">
+        <a href="https://eprospera.hn/residency" target="_blank" rel="noopener">Apply at eprospera.hn →</a>
       </div>
       <p class="involved-note">Processing typically takes one to three days. Próspera residency does not replace Honduran immigration status.</p>
     </div>
@@ -952,7 +1007,6 @@
   <section id="links" class="links-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Resources</span>
         <h2>Links</h2>
       </div>
 
@@ -1024,7 +1078,6 @@
   <section id="faq" class="faq-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Questions</span>
         <h2>Frequently Asked</h2>
       </div>
 
@@ -1107,6 +1160,81 @@
   </div>
 
   <script>
+    // ─── Photos carousel ─────────────────────────────
+    var photosIndex = 0;
+    var PHOTOS_GAP = 8;
+    var photosVisible = 2;
+
+    function initPhotos() {
+      var wrap = document.getElementById('photos-wrap');
+      var track = document.getElementById('photos-track');
+      if (!wrap || !track) return;
+      photosVisible = wrap.offsetWidth < 500 ? 1 : 2;
+      var items = track.querySelectorAll('.photo-item');
+      var itemWidth = (wrap.offsetWidth - PHOTOS_GAP * (photosVisible - 1)) / photosVisible;
+      for (var i = 0; i < items.length; i++) {
+        items[i].style.width = itemWidth + 'px';
+      }
+      photosIndex = 0;
+      track.style.transform = 'translateX(0)';
+      updatePhotosBtns(items.length);
+    }
+
+    function shiftPhotos(dir) {
+      var track = document.getElementById('photos-track');
+      var items = track.querySelectorAll('.photo-item');
+      var max = items.length - photosVisible;
+      photosIndex = Math.max(0, Math.min(photosIndex + dir, max));
+      var step = items[0].offsetWidth + PHOTOS_GAP;
+      track.style.transform = 'translateX(-' + (photosIndex * step) + 'px)';
+      updatePhotosBtns(items.length);
+    }
+
+    function updatePhotosBtns(total) {
+      document.getElementById('photos-prev').disabled = photosIndex === 0;
+      document.getElementById('photos-next').disabled = photosIndex >= total - photosVisible;
+    }
+
+    window.addEventListener('load', initPhotos);
+    window.addEventListener('resize', initPhotos);
+
+    // ─── Posts carousel ──────────────────────────────
+    var postsIndex = 0;
+    var POSTS_VISIBLE = 3;
+    var POSTS_GAP = 8;
+
+    function initPosts() {
+      var wrap = document.getElementById('tweets-wrap');
+      var track = document.getElementById('tweets-track');
+      if (!wrap || !track) return;
+      var cards = track.querySelectorAll('.tweet-card');
+      var cardWidth = (wrap.offsetWidth - POSTS_GAP * (POSTS_VISIBLE - 1)) / POSTS_VISIBLE;
+      for (var i = 0; i < cards.length; i++) {
+        cards[i].style.width = cardWidth + 'px';
+      }
+      postsIndex = 0;
+      track.style.transform = 'translateX(0)';
+      updatePostsBtns(cards.length);
+    }
+
+    function shiftPosts(dir) {
+      var track = document.getElementById('tweets-track');
+      var cards = track.querySelectorAll('.tweet-card');
+      var max = cards.length - POSTS_VISIBLE;
+      postsIndex = Math.max(0, Math.min(postsIndex + dir, max));
+      var step = cards[0].offsetWidth + POSTS_GAP;
+      track.style.transform = 'translateX(-' + (postsIndex * step) + 'px)';
+      updatePostsBtns(cards.length);
+    }
+
+    function updatePostsBtns(total) {
+      document.getElementById('posts-prev').disabled = postsIndex === 0;
+      document.getElementById('posts-next').disabled = postsIndex >= total - POSTS_VISIBLE;
+    }
+
+    window.addEventListener('load', initPosts);
+    window.addEventListener('resize', initPosts);
+
     // ─── FAQ accordion ───────────────────────────────
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
