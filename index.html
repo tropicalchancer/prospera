@@ -51,6 +51,12 @@
     }
     body { line-height: 1.65; }
     a { color: inherit; }
+    p a {
+      text-decoration: underline;
+      text-decoration-color: var(--gray5);
+      text-underline-offset: 2px;
+    }
+    p a:hover { text-decoration-color: var(--gray3); }
     p { margin-bottom: 16px; }
     p:last-child { margin-bottom: 0; }
 
@@ -208,7 +214,6 @@
 
     /* ─── Stats ───────────────────────────────────────── */
     .stats-band {
-      border-bottom: 1px solid var(--border);
       padding: 20px 0;
     }
     .stats-label {
@@ -249,6 +254,7 @@
     }
 
     /* ─── Relevance ──────────────────────────────────── */
+    .overview-section { padding: 36px 0; }
     .relevance-section { padding: 36px 0; }
     .relevance-list {
       list-style: none;
@@ -575,17 +581,16 @@
 
     /* ─── Tweets ─────────────────────────────────────── */
     .tweets-section { padding: 36px 0; }
-    .tweets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .tweet-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-    .tweet-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .tweet-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #333; flex-shrink: 0; }
-    .tweet-name { font-size: 13px; font-weight: 600; color: var(--black); line-height: 1.2; }
-    .tweet-handle { font-size: 12px; color: var(--gray4); }
-    .tweet-text { font-size: 14px; color: var(--gray2); line-height: 1.65; margin-bottom: 10px; }
-    .tweet-footer { display: flex; align-items: center; justify-content: space-between; }
-    .tweet-date { font-size: 12px; color: var(--gray4); }
-    .tweet-link { font-size: 12px; color: var(--gray4); text-decoration: none; }
-    .tweet-link:hover { color: var(--gray2); }
+    .tweets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .tweet-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; text-decoration: none; transition: border-color 0.12s; }
+    .tweet-card:hover { border-color: #999; }
+    .tweet-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .tweet-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--subtle); }
+    .tweet-meta { flex: 1; min-width: 0; }
+    .tweet-name { font-size: 14px; font-weight: 600; color: var(--black); line-height: 1.2; }
+    .tweet-handle { font-size: 12px; color: var(--gray4); margin-top: 2px; }
+    .tweet-text { font-size: 15px; color: var(--gray2); line-height: 1.65; flex: 1; margin-bottom: 14px; }
+    .tweet-footer { font-size: 12px; color: var(--gray4); }
 
     /* ─── How to Get Involved ────────────────────────── */
     .involved-section { padding: 36px 0; }
@@ -599,14 +604,6 @@
     .involved-cta:hover { text-decoration: underline; }
     .involved-note { font-size: 13px; color: var(--gray4); margin-top: 12px; }
 
-    /* ─── Related ─────────────────────────────────────── */
-    .related-section { padding: 36px 0; border-top: 1px solid var(--border); }
-    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .related-card { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; text-decoration: none; transition: border-color 0.12s; display: block; }
-    .related-card:hover { border-color: #999; }
-    .related-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
-    .related-desc { font-size: 12px; color: var(--gray4); line-height: 1.5; margin-bottom: 10px; }
-    .related-status { display: inline-block; font-size: 11px; color: var(--gray4); background: var(--subtle); border-radius: 999px; padding: 3px 10px; font-weight: 500; }
 
     /* ─── Responsive ──────────────────────────────────── */
     @media (max-width: 680px) {
@@ -638,15 +635,14 @@
       .timeline::before { left: 66px; }
       .timeline-date { min-width: 46px; }
 
-      .tweets-grid { grid-template-columns: 1fr; }
+      .tweets-grid { grid-template-columns: 1fr 1fr; }
       .involved-grid { grid-template-columns: 1fr 1fr; }
-      .related-grid { grid-template-columns: 1fr 1fr; }
       .location-fact-item { grid-template-columns: 90px 1fr; }
     }
     @media (max-width: 440px) {
       .sectors-grid { grid-template-columns: 1fr; }
       .involved-grid { grid-template-columns: 1fr; }
-      .related-grid { grid-template-columns: 1fr; }
+
     }
   </style>
 </head>
@@ -673,7 +669,7 @@
       </div>
 
       <div class="hero-below">
-        <p class="hero-description">A private charter city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system. Near-zero corporate taxes, zero capital gains, private arbitration, and a digital e-residency program. Its constitutional status is disputed following Honduras's 2022 repeal of the ZEDE law; a $10.775 billion ICSID arbitration case is ongoing while the zone continues to operate.</p>
+        <p class="hero-description">A private <a href="https://grokipedia.com/page/charter_city_economic_development" target="_blank" rel="noopener">charter city</a> on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
         <div class="hero-actions">
           <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
           <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="btn-secondary">prospera.co</a>
@@ -690,23 +686,23 @@
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-value">250+</div>
-          <div class="stat-label">Companies</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">1,700+</div>
-          <div class="stat-label">Residents &amp; e-Residents</div>
+          <div class="stat-label">Registered Companies</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">$100M+</div>
           <div class="stat-label">Investment</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">~1%</div>
-          <div class="stat-label">Corporate Tax (eff.)</div>
-        </div>
-        <div class="stat-item">
           <div class="stat-value">1,000+</div>
           <div class="stat-label">Acres</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">1,700+</div>
+          <div class="stat-label">Residents &amp; e-Residents</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">~1%</div>
+          <div class="stat-label">Corporate Tax (eff.)</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">2017</div>
@@ -717,13 +713,16 @@
   </section>
 
 
-  <!-- ─── Photos ─────────────────────────────────────── -->
-  <section class="photos-section">
+  <!-- ─── What is Próspera ────────────────────────────── -->
+  <hr class="divider">
+  <section class="overview-section">
     <div class="container">
-      <div class="photo-grid">
-        <div class="photo-item" style="background-image: url('prospera1.jpg');"></div>
-        <div class="photo-item" style="background-image: url('prospera3.jpg'); background-position: center center;"></div>
+      <div class="section-header">
+        <span class="section-label">Overview</span>
+        <h2>What is Próspera?</h2>
       </div>
+      <p>Próspera is a privately managed economic zone on the island of Roatán, Honduras. It operates with independent legal and tax systems to create a business-friendly environment.</p>
+      <p>Backed by prominent technology investors, Próspera attracts global entrepreneurs with near-zero corporate taxes, private dispute resolution, and a digital residency program for remote company formation.</p>
     </div>
   </section>
 
@@ -735,16 +734,25 @@
         <span class="section-label">Network States</span>
         <h2>Why it matters</h2>
       </div>
-      <ul class="relevance-list">
-        <li>Próspera is the most advanced operational test of jurisdictional entrepreneurship to date. A functioning zone with its own legal code, private arbitration system, tax structure, and physical infrastructure — most experiments in this space remain theoretical. This one is operating.</li>
-        <li>The $10.775 billion ICSID case under CAFTA-DR is the highest-stakes legal test yet of whether startup societies can enforce contractual protections against political reversal by a host nation. The outcome will set a precedent for every future experiment that operates within an existing state.</li>
-        <li>Despite its 50-year stability clause, Próspera's existence remains significantly dependent on host-nation political conditions. The shift from Castro to Asfura changed the climate overnight — underscoring why the movement needs not just contractual protections, but ultimately exit rights and full sovereignty.</li>
-      </ul>
+      <p>Próspera is the most advanced working model of a privately governed city. Most similar concepts exist only on paper. Próspera operates today with physical infrastructure and an active legal system.</p>
+      <p>The project serves as a landmark legal test for the industry. The zone's ongoing international arbitration case will set a global precedent for how private startup societies protect their agreements when host governments attempt to change the rules.</p>
+      <p>It also highlights the impact of local politics. The recent shift to a supportive Honduran administration shows how heavily autonomous zones rely on the political climate of their host nations, driving the broader movement's interest in complete sovereignty.</p>
     </div>
   </section>
 
-  <!-- ─── Who it's for ────────────────────────────────── -->
+  <!-- ─── Photos ─────────────────────────────────────── -->
   <hr class="divider">
+  <section class="photos-section">
+    <div class="container">
+      <div class="photo-grid">
+        <div class="photo-item" style="background-image: url('prospera1.jpg');"></div>
+        <div class="photo-item" style="background-image: url('prospera3.jpg'); background-position: center center;"></div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- ─── Who it's for ────────────────────────────────── -->
   <section id="who" class="who-section">
     <div class="container">
       <div class="section-header">
@@ -790,98 +798,40 @@
         <h2>Tweets</h2>
       </div>
       <div class="tweets-grid">
-        <div class="tweet-card">
+        <a href="https://x.com/balajis/status/ADD_BALAJI_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
           <div class="tweet-header">
-            <div class="tweet-avatar" style="background:#dce8f5;">BS</div>
-            <div>
+            <img class="tweet-avatar" src="balaji.jpg" alt="Balaji Srinivasan">
+            <div class="tweet-meta">
               <div class="tweet-name">Balaji Srinivasan</div>
               <div class="tweet-handle">@balajis</div>
             </div>
           </div>
-          <p class="tweet-text">Próspera has a legal system, tax code, private arbitration, fiber internet, biotech hub, and 250+ companies. Most "governance experiments" are blog posts. This one is operating.</p>
-          <div class="tweet-footer">
-            <span class="tweet-date">— add date —</span>
-            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
-          </div>
-        </div>
-        <div class="tweet-card">
+          <p class="tweet-text">I just got back from Próspera. A startup city on the island of Roatán. It's crypto, it's bio, it's robo. And it's not San Francisco.</p>
+          <div class="tweet-footer">Feb 17, 2024</div>
+        </a>
+        <a href="https://x.com/brian_armstrong/status/1881807446710059020" target="_blank" rel="noopener" class="tweet-card">
           <div class="tweet-header">
-            <div class="tweet-avatar" style="background:#e0e7d9;">NR</div>
-            <div>
-              <div class="tweet-name">Naval Ravikant</div>
-              <div class="tweet-handle">@naval</div>
+            <img class="tweet-avatar" src="brian.jpg" alt="Brian Armstrong">
+            <div class="tweet-meta">
+              <div class="tweet-name">Brian Armstrong</div>
+              <div class="tweet-handle">@brian_armstrong</div>
             </div>
           </div>
-          <p class="tweet-text">The interesting thing about Próspera isn't the tax rates. It's the private legal system. You can actually opt out of the host country's courts. That's unprecedented at this scale.</p>
-          <div class="tweet-footer">
-            <span class="tweet-date">— add date —</span>
-            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
-          </div>
-        </div>
-        <div class="tweet-card">
+          <p class="tweet-text">We're excited to invest in @ProsperaGlobal which is creating special economic zones in various countries (the first one in Honduras, hopefully eventually in the U.S.).</p>
+          <div class="tweet-footer">Jan 21, 2025</div>
+        </a>
+        <a href="https://x.com/TimDraper/status/ADD_DRAPER_TWEET_ID" target="_blank" rel="noopener" class="tweet-card">
           <div class="tweet-header">
-            <div class="tweet-avatar" style="background:#e8e0d9;">TG</div>
-            <div>
-              <div class="tweet-name">Trey Goff</div>
-              <div class="tweet-handle">@treygoff</div>
+            <img class="tweet-avatar" src="tim.jpg" alt="Tim Draper">
+            <div class="tweet-meta">
+              <div class="tweet-name">Tim Draper</div>
+              <div class="tweet-handle">@TimDraper</div>
             </div>
           </div>
-          <p class="tweet-text">Year six. We are still building. The political headwinds are real but the zone continues to operate. 250+ companies. The $10.7B ICSID case is at the merits phase.</p>
-          <div class="tweet-footer">
-            <span class="tweet-date">— add date —</span>
-            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
-          </div>
-        </div>
-        <div class="tweet-card">
-          <div class="tweet-header">
-            <div class="tweet-avatar" style="background:#e5dff0;">ML</div>
-            <div>
-              <div class="tweet-name">Mark Lutter</div>
-              <div class="tweet-handle">@MarkLutter</div>
-            </div>
-          </div>
-          <p class="tweet-text">Whatever your politics, the ICSID arbitration is one of the most important legal cases for startup societies in history. The precedent will affect every future SEZ and charter city for decades.</p>
-          <div class="tweet-footer">
-            <span class="tweet-date">— add date —</span>
-            <a href="#" class="tweet-link" target="_blank" rel="noopener">View on X →</a>
-          </div>
-        </div>
+          <p class="tweet-text">Trip to LATAM. Perspectives: Met with Prospera, Infinita in Honduras. Prospera is the best place to do business on the planet. The next Dubai.</p>
+          <div class="tweet-footer">Mar 12, 2025</div>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── How to Get Involved ──────────────────────────── -->
-  <hr class="divider">
-  <section id="involved" class="involved-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Participation</span>
-        <h2>How to get involved</h2>
-      </div>
-      <div class="involved-grid">
-        <div class="involved-card">
-          <div class="involved-tier">Tier 1</div>
-          <div class="involved-title">Visitor Pass</div>
-          <div class="involved-price">Free</div>
-          <div class="involved-desc">Unlimited daily access and up to 30 overnight stays per year. No fee required upfront.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
-        </div>
-        <div class="involved-card">
-          <div class="involved-tier">Tier 2</div>
-          <div class="involved-title">e-Residency</div>
-          <div class="involved-price">$130 / year</div>
-          <div class="involved-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year. Designed for remote entrepreneurs.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
-        </div>
-        <div class="involved-card">
-          <div class="involved-tier">Tier 3</div>
-          <div class="involved-title">Full Residency</div>
-          <div class="involved-price">$130 + mandatory insurance</div>
-          <div class="involved-desc">Full-time physical access and all business rights. Requires identity verification, criminal background check, and signing the Agreement of Coexistence.</div>
-          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
-        </div>
-      </div>
-      <p class="involved-note">Processing typically takes one to three days. Próspera residency does not replace Honduran immigration status.</p>
     </div>
   </section>
 
@@ -959,6 +909,41 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ─── How to Get Involved ──────────────────────────── -->
+  <hr class="divider">
+  <section id="involved" class="involved-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Participation</span>
+        <h2>How to get involved</h2>
+      </div>
+      <div class="involved-grid">
+        <div class="involved-card">
+          <div class="involved-tier">Tier 1</div>
+          <div class="involved-title">Visitor Pass</div>
+          <div class="involved-price">Free</div>
+          <div class="involved-desc">Unlimited daily access and up to 30 overnight stays per year. No fee required upfront.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+        <div class="involved-card">
+          <div class="involved-tier">Tier 2</div>
+          <div class="involved-title">e-Residency</div>
+          <div class="involved-price">$130 / year</div>
+          <div class="involved-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year. Designed for remote entrepreneurs.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+        <div class="involved-card">
+          <div class="involved-tier">Tier 3</div>
+          <div class="involved-title">Full Residency</div>
+          <div class="involved-price">$130 + mandatory insurance</div>
+          <div class="involved-desc">Full-time physical access and all business rights. Requires identity verification, criminal background check, and signing the Agreement of Coexistence.</div>
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="involved-cta">Apply at eprospera.hn →</a>
+        </div>
+      </div>
+      <p class="involved-note">Processing typically takes one to three days. Próspera residency does not replace Honduran immigration status.</p>
     </div>
   </section>
 
@@ -1100,32 +1085,7 @@
     </div>
   </section>
 
-  <!-- ─── Related Societies ───────────────────────────── -->
-  <section class="related-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">NS Directory</span>
-        <h2>Related societies</h2>
-      </div>
-      <div class="related-grid">
-        <a href="/praxis" class="related-card">
-          <div class="related-name">Praxis</div>
-          <div class="related-desc">City-state in development. Mediterranean coast. Targeting 2028 groundbreaking.</div>
-          <span class="related-status">In development</span>
-        </a>
-        <a href="/culdesac" class="related-card">
-          <div class="related-name">Culdesac</div>
-          <div class="related-desc">Car-free neighborhood in Tempe, Arizona. 1,000 residents. Mixed-use urban design.</div>
-          <span class="related-status">Operational</span>
-        </a>
-        <a href="/liberland" class="related-card">
-          <div class="related-name">Liberland</div>
-          <div class="related-desc">Micronation on a disputed strip of land between Croatia and Serbia. Self-declared 2015.</div>
-          <span class="related-status">Disputed</span>
-        </a>
-      </div>
-    </div>
-  </section>
+
 
   <!-- ─── Footer ──────────────────────────────────────── -->
   <footer>
