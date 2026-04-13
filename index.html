@@ -360,6 +360,31 @@
       border-radius: 8px;
     }
 
+    /* ─── Platform projects ──────────────────────────── */
+    .platform-section { padding: 36px 0; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .platform-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s;
+    }
+    .platform-card:hover { border-color: #999; }
+    .platform-card-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--border);
+      background-size: cover;
+      background-position: center;
+    }
+    .platform-card-body { padding: 14px 16px; }
+    .platform-card-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 4px; }
+    .platform-card-desc { font-size: 12px; color: var(--gray4); }
+    @media (max-width: 600px) { .platform-grid { grid-template-columns: 1fr; } }
+
     /* ─── Sectors ─────────────────────────────────────── */
     .sectors-section { padding: 36px 0; }
     .sectors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -968,6 +993,39 @@
             <div class="tweet-footer">Feb 17, 2024</div>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Platform ───────────────────────────────────── -->
+  <hr class="divider">
+  <section class="platform-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Próspera as a Platform</h2>
+      </div>
+      <div class="platform-grid">
+        <a class="platform-card" href="https://www.infinita.city/" target="_blank" rel="noopener">
+          <div class="platform-card-img" style="background-image: url('infinitaplatform.jpg');"></div>
+          <div class="platform-card-body">
+            <div class="platform-card-name">Infinita</div>
+            <div class="platform-card-desc">A longevity-focused city within Próspera for biotech and life extension research.</div>
+          </div>
+        </a>
+        <a class="platform-card" href="https://www.thecircularfactory.com/" target="_blank" rel="noopener">
+          <div class="platform-card-img" style="background-image: url('circularfactoryplatform.jpg');"></div>
+          <div class="platform-card-body">
+            <div class="platform-card-name">Circular Factory</div>
+            <div class="platform-card-desc">Advanced manufacturing hub pioneering circular economy production.</div>
+          </div>
+        </a>
+        <a class="platform-card" href="https://www.amityage.com/bitcoin-center-roatan" target="_blank" rel="noopener">
+          <div class="platform-card-img" style="background-image: url('bitcoincenter.jpg');"></div>
+          <div class="platform-card-body">
+            <div class="platform-card-name">AmityAge Bitcoin Center</div>
+            <div class="platform-card-desc">Education and community hub for Bitcoin adoption in the region.</div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
