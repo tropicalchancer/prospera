@@ -143,21 +143,49 @@
     }
 
 
-    /* ─── Breadcrumb ─────────────────────────────────── */
-    .breadcrumb {
+    /* ─── Site Nav ───────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-nav-inner {
+      display: flex;
+      align-items: center;
+      height: 44px;
+    }
+    .nav-wordmark {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .nav-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+      margin: 0 12px;
+      flex-shrink: 0;
+    }
+    .nav-crumb {
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-bottom: 16px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--gray4);
+      min-width: 0;
     }
-    .breadcrumb a { color: var(--gray4); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--gray2); }
-    .breadcrumb-sep { color: var(--gray5); }
+    .nav-crumb a { color: var(--gray4); text-decoration: none; white-space: nowrap; }
+    .nav-crumb a:hover { color: var(--gray2); }
+    .nav-crumb-sep { color: var(--gray5); }
+    .nav-crumb-current { color: var(--gray2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* ─── Hero ────────────────────────────────────────── */
-    .hero { padding: 20px 0 36px; }
+    .hero { padding: 20px 0 32px; }
 
     .hero-profile-card {
       border: 1px solid var(--border);
@@ -203,13 +231,37 @@
       font-size: 15px;
       color: var(--gray2);
       line-height: 1.65;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       max-width: 520px;
     }
 
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--gray3);
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-social:hover { border-color: #999; color: var(--black); }
+    .btn-social svg { width: 15px; height: 15px; fill: currentColor; }
+
     /* ─── Stats ───────────────────────────────────────── */
     .stats-band {
-      padding: 36px 0;
+      padding: 28px 0 36px;
     }
     .stats-heading {
       font-family: var(--serif);
@@ -217,7 +269,7 @@
       font-weight: 400;
       color: var(--black);
       letter-spacing: -0.015em;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .stats-grid {
       display: grid;
@@ -672,8 +724,8 @@
       .hero-identity h1 { font-size: 24px; }
       .hero-info { gap: 14px; padding: 18px; }
       .hero-logo { width: 52px; height: 52px; }
-
-
+      .hero-actions { gap: 6px; }
+      .btn-social { width: 38px; height: 38px; }
 
       .mobile-cta { display: block; }
       body { padding-bottom: 90px; }
@@ -705,17 +757,24 @@
 </head>
 <body>
 
+  <!-- ─── Nav ───────────────────────────────────────── -->
+  <header class="site-nav">
+    <div class="container">
+      <div class="site-nav-inner">
+        <a href="/" class="nav-wordmark">NS</a>
+        <span class="nav-sep"></span>
+        <nav class="nav-crumb" aria-label="Breadcrumb">
+          <a href="/directory">Directory</a>
+          <span class="nav-crumb-sep">/</span>
+          <span class="nav-crumb-current">Próspera</span>
+        </nav>
+      </div>
+    </div>
+  </header>
+
   <!-- ─── Hero ──────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
-
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">ns.com</a>
-        <span class="breadcrumb-sep">/</span>
-        <a href="/directory">directory</a>
-        <span class="breadcrumb-sep">/</span>
-        <span>próspera</span>
-      </nav>
 
       <div class="hero-profile-card">
         <div class="hero-photo"></div>
@@ -726,7 +785,13 @@
           <div class="hero-identity">
             <h1>Próspera</h1>
             <p class="hero-description">A startup city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
-            <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
+            <div class="hero-actions">
+              <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
+              <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="btn-secondary">Learn more</a>
+              <a href="https://x.com/ProsperaGlobal" target="_blank" rel="noopener" class="btn-social" aria-label="Próspera on X">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.735-8.878L1.254 2.25H8.08l4.261 5.634L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -735,6 +800,7 @@
   </section>
 
   <!-- ─── Stats ─────────────────────────────────────── -->
+  <hr class="divider">
   <section class="stats-band">
     <div class="container">
       <h2 class="stats-heading">At a glance</h2>
