@@ -154,35 +154,19 @@
     .site-nav-inner {
       display: flex;
       align-items: center;
-      height: 44px;
+      height: 56px;
     }
-    .nav-wordmark {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--black);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      flex-shrink: 0;
-    }
-    .nav-sep {
-      width: 1px;
-      height: 14px;
-      background: var(--border);
-      margin: 0 12px;
-      flex-shrink: 0;
-    }
-    .nav-crumb {
+    .nav-logo {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--gray4);
-      min-width: 0;
+      text-decoration: none;
+      flex-shrink: 0;
     }
-    .nav-crumb a { color: var(--gray4); text-decoration: none; white-space: nowrap; }
-    .nav-crumb a:hover { color: var(--gray2); }
-    .nav-crumb-sep { color: var(--gray5); }
-    .nav-crumb-current { color: var(--gray2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-logo img {
+      height: 16px;
+      width: auto;
+      display: block;
+    }
 
     /* ─── Hero ────────────────────────────────────────── */
     .hero { padding: 20px 0 32px; }
@@ -203,14 +187,20 @@
 
     .hero-info {
       display: flex;
-      align-items: flex-start;
-      gap: 20px;
+      flex-direction: column;
+      gap: 14px;
       padding: 24px 26px;
     }
 
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .hero-logo {
-      width: 68px;
-      height: 68px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       flex-shrink: 0;
       overflow: hidden;
@@ -221,17 +211,15 @@
       object-fit: cover;
     }
 
-    .hero-identity h1 {
+    .hero-header h1 {
       font-size: 28px;
       color: var(--black);
-      margin-bottom: 8px;
     }
 
     .hero-description {
       font-size: 15px;
       color: var(--gray2);
       line-height: 1.65;
-      margin-bottom: 18px;
       max-width: 520px;
     }
 
@@ -243,6 +231,14 @@
     }
     .hero-ctas { display: contents; }
     .hero-socials { display: flex; align-items: center; gap: 8px; }
+    .hero-learn-more {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray3);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .hero-learn-more:hover { color: var(--black); }
 
     .btn-social {
       display: inline-flex;
@@ -725,13 +721,12 @@
       h2 { font-size: 24px; }
 
       .hero-photo { height: 200px; }
-      .hero-identity h1 { font-size: 24px; }
-      .hero-info { gap: 14px; padding: 18px; }
-      .hero-logo { width: 52px; height: 52px; }
-      .hero-actions { flex-direction: column; align-items: stretch; gap: 8px; }
-      .hero-ctas { display: flex; flex-direction: column; gap: 8px; }
-      .hero-ctas .btn-primary,
-      .hero-ctas .btn-secondary { justify-content: center; }
+      .hero-info { gap: 12px; padding: 18px; }
+      .hero-logo { width: 44px; height: 44px; }
+      .hero-header h1 { font-size: 22px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .hero-ctas { display: flex; align-items: center; gap: 12px; }
+      .hero-ctas .btn-primary { justify-content: center; }
       .btn-social { width: 38px; height: 38px; }
 
       .mobile-cta { display: block; }
@@ -765,13 +760,9 @@
   <header class="site-nav">
     <div class="container">
       <div class="site-nav-inner">
-        <a href="/" class="nav-wordmark">NS</a>
-        <span class="nav-sep"></span>
-        <nav class="nav-crumb" aria-label="Breadcrumb">
-          <a href="/directory">Directory</a>
-          <span class="nav-crumb-sep">/</span>
-          <span class="nav-crumb-current">Próspera</span>
-        </nav>
+        <a href="/" class="nav-logo">
+          <img src="https://assets.ns.com/static/about/network-state-and-network-school-logos/ns-com-logos/ns-com-logo-black.svg" alt="NS">
+        </a>
       </div>
     </div>
   </header>
@@ -783,16 +774,17 @@
       <div class="hero-profile-card">
         <div class="hero-photo"></div>
         <div class="hero-info">
-          <div class="hero-logo">
-            <img src="prospera.jpg" alt="Próspera logo">
-          </div>
-          <div class="hero-identity">
+          <div class="hero-header">
+            <div class="hero-logo">
+              <img src="prospera.jpg" alt="Próspera logo">
+            </div>
             <h1>Próspera</h1>
-            <p class="hero-description">A startup city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
-            <div class="hero-actions">
+          </div>
+          <p class="hero-description">A startup city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system.</p>
+          <div class="hero-actions">
               <div class="hero-ctas">
                 <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &rarr;</a>
-                <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="btn-secondary">Learn more</a>
+                <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="hero-learn-more">Learn more</a>
               </div>
               <div class="hero-socials">
               <a href="https://x.com/ProsperaGlobal" target="_blank" rel="noopener" class="btn-social" aria-label="Próspera on X">
@@ -816,7 +808,6 @@
         </div>
       </div>
 
-    </div>
   </section>
 
   <!-- ─── Stats ─────────────────────────────────────── -->

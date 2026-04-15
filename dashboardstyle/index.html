@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Próspera — NS Directory</title>
+  <meta name="description" content="Próspera is a private charter city and ZEDE on Roatán island, Honduras. 250+ companies, 1,700+ residents, ~1% corporate tax, zero capital gains.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; }
+
+    :root {
+      --black:  #111;
+      --gray2:  #444;
+      --gray3:  #666;
+      --gray4:  #999;
+      --gray5:  #ccc;
+      --border: #e8e8e8;
+      --bg:     #f5f5f3;
+      --white:  #fff;
+      --serif:  'Source Serif 4', Georgia, serif;
+      --sans:   'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html {
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--gray2);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    body { line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ─── Sidebar ─────────────────────────────────────── */
+    .sidebar {
+      width: 216px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-logo {
+      padding: 18px 20px 16px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-logo a { display: block; }
+    .sidebar-logo img { height: 13px; }
+
+    .sidebar-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 20px 8px;
+      font-size: 12px;
+      color: var(--gray4);
+    }
+    .sidebar-back:hover { color: var(--gray2); }
+
+    .sidebar-entity {
+      padding: 0 20px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-entity-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-entity-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .sidebar-entity-name { font-size: 13px; font-weight: 600; color: var(--black); }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 20px 8px;
+    }
+
+    .sidebar-section-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray5);
+      padding: 0 20px;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      font-size: 13px;
+      color: var(--gray3);
+      border-left: 2px solid transparent;
+      transition: color 0.1s, background 0.1s;
+    }
+    .sidebar-nav a:hover { color: var(--black); background: var(--bg); }
+    .sidebar-nav a.active {
+      color: var(--black);
+      border-left-color: var(--black);
+      font-weight: 500;
+      background: var(--bg);
+    }
+    .sidebar-nav-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.4;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-cta {
+      display: block;
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+    .sidebar-cta:hover { opacity: 0.8; }
+
+    /* ─── Main ────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 20px 24px 36px;
+    }
+
+    .main > * + * { margin-top: 10px; }
+
+    /* ─── Cards ───────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 12px 18px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray4);
+    }
+    .card-body { padding: 16px 18px; }
+
+    /* ─── Grids ───────────────────────────────────────── */
+    .grid-6040 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 10px;
+    }
+    .grid-50 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    /* ─── Profile header ──────────────────────────────── */
+    .header-photo {
+      width: 100%;
+      height: 190px;
+      background-image: url('../prospera2.jpg');
+      background-size: cover;
+      background-position: center 58%;
+    }
+    .header-identity {
+      padding: 16px 20px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .header-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 1px var(--border);
+      flex-shrink: 0;
+      margin-top: -28px;
+      position: relative;
+      z-index: 1;
+    }
+    .header-logo img { width: 100%; height: 100%; object-fit: cover; }
+    .header-meta { flex: 1; min-width: 0; }
+    .header-name {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+    .header-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray4);
+    }
+    .header-desc {
+      font-size: 13px;
+      color: var(--gray3);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      max-width: 580px;
+    }
+    .header-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--white);
+      color: var(--gray2);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      transition: border-color 0.15s;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover { border-color: var(--gray4); }
+
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--gray4);
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-social:hover { border-color: var(--gray4); color: var(--black); }
+    .btn-social svg { width: 12px; height: 12px; fill: currentColor; }
+
+    /* ─── Stats strip ─────────────────────────────────── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .stat-cell {
+      padding: 14px 18px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 3px;
+    }
+    .stat-lbl { font-size: 11px; color: var(--gray4); line-height: 1.3; }
+
+    /* ─── Overview ────────────────────────────────────── */
+    .overview-body p {
+      font-size: 13.5px;
+      color: var(--gray2);
+      line-height: 1.72;
+      margin-bottom: 12px;
+    }
+    .overview-body p:last-child { margin-bottom: 0; }
+
+    /* ─── Tax ─────────────────────────────────────────── */
+    .tax-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tax-row:last-child { border-bottom: none; }
+    .tax-name { font-size: 13px; color: var(--gray2); }
+    .tax-note { font-size: 11px; color: var(--gray4); margin-top: 1px; }
+    .tax-rate {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    /* ─── Pills ───────────────────────────────────────── */
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gray2);
+    }
+
+    /* ─── People ──────────────────────────────────────── */
+    .people-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .person-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--bg);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray3);
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .person-name { font-size: 12px; font-weight: 500; color: var(--black); line-height: 1.3; }
+    .person-role { font-size: 11px; color: var(--gray4); line-height: 1.3; }
+
+    .subsection-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gray4);
+      margin-bottom: 8px;
+    }
+
+    .backers-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; }
+    .backer-chip {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 11px;
+      color: var(--gray3);
+    }
+
+    /* ─── Timeline ────────────────────────────────────── */
+    .tl-row {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .tl-row:last-child { border-bottom: none; }
+    .tl-date { font-size: 11px; font-weight: 600; color: var(--gray4); padding-top: 1px; }
+    .tl-title { font-size: 12px; font-weight: 500; color: var(--black); line-height: 1.3; margin-bottom: 2px; }
+    .tl-detail { font-size: 11px; color: var(--gray4); line-height: 1.45; }
+
+    /* ─── Posts ───────────────────────────────────────── */
+    .post-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 6px;
+      transition: border-color 0.12s;
+    }
+    .post-card:last-child { margin-bottom: 0; }
+    .post-card:hover { border-color: var(--gray4); }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .post-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+    .post-name { font-size: 12px; font-weight: 600; color: var(--black); line-height: 1.2; }
+    .post-handle { font-size: 11px; color: var(--gray4); }
+    .post-text { font-size: 12px; color: var(--gray2); line-height: 1.6; margin-bottom: 8px; }
+    .post-date { font-size: 11px; color: var(--gray4); }
+
+    /* ─── Platform ────────────────────────────────────── */
+    .platform-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.12s;
+    }
+    .platform-card:hover { border-color: var(--gray4); }
+    .platform-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: var(--border);
+      background-size: cover;
+      background-position: center;
+    }
+    .platform-body { padding: 11px 13px; }
+    .platform-name { font-size: 12px; font-weight: 500; color: var(--black); margin-bottom: 3px; }
+    .platform-desc { font-size: 11px; color: var(--gray4); line-height: 1.45; }
+
+    /* ─── Involve ─────────────────────────────────────── */
+    .involve-row {
+      display: grid;
+      grid-template-columns: 110px 120px 1fr;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .involve-row:last-child { border-bottom: none; }
+    .involve-tier { font-size: 13px; font-weight: 500; color: var(--black); }
+    .involve-price { font-size: 13px; color: var(--gray3); }
+    .involve-desc { font-size: 12px; color: var(--gray3); line-height: 1.5; }
+
+    /* ─── Links ───────────────────────────────────────── */
+    .filter-row { display: flex; gap: 4px; flex-wrap: wrap; padding: 10px 18px; border-bottom: 1px solid var(--border); }
+    .filter-tab {
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--gray3);
+      transition: background 0.1s, border-color 0.1s, color 0.1s;
+    }
+    .filter-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+    .filter-tab:hover:not(.active) { border-color: var(--gray4); }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.08s;
+    }
+    .link-item:last-child { border-bottom: none; }
+    .link-item:hover { background: var(--bg); }
+    .link-title { font-size: 13px; font-weight: 500; color: var(--black); flex: 1; }
+    .link-source { font-size: 11px; color: var(--gray4); white-space: nowrap; }
+    .link-arrow { color: var(--gray5); font-size: 14px; }
+
+    /* ─── FAQ ─────────────────────────────────────────── */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.4;
+      font-family: var(--sans);
+      transition: background 0.1s;
+    }
+    .faq-q:hover { background: var(--bg); }
+    .faq-indicator {
+      color: var(--gray4);
+      font-size: 18px;
+      flex-shrink: 0;
+      font-weight: 300;
+      transition: transform 0.15s;
+      line-height: 1;
+    }
+    .faq-item.open .faq-indicator { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 0 18px 14px;
+      font-size: 13px;
+      color: var(--gray2);
+      line-height: 1.72;
+    }
+    .faq-a p { margin-bottom: 8px; }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ─── Footer ──────────────────────────────────────── */
+    .page-footer {
+      padding: 14px 0 0;
+      font-size: 12px;
+      color: var(--gray4);
+    }
+    .page-footer a { color: var(--gray4); }
+    .page-footer a:hover { color: var(--gray2); }
+
+    /* ─── Mobile ──────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .sidebar { display: none; }
+      .main { padding: 16px; }
+      .stats-strip { grid-template-columns: repeat(3, 1fr); }
+      .stat-cell:nth-child(3) { border-right: none; }
+      .stat-cell:nth-child(4),
+      .stat-cell:nth-child(5),
+      .stat-cell:nth-child(6) { border-top: 1px solid var(--border); }
+      .grid-6040, .grid-50 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .people-grid { grid-template-columns: 1fr; }
+      .involve-row { grid-template-columns: 1fr 1fr; }
+      .involve-desc { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ─── Sidebar ────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <a href="/">
+        <img src="https://assets.ns.com/static/about/network-state-and-network-school-logos/ns-com-logos/ns-com-logo-black.svg" alt="NS">
+      </a>
+    </div>
+
+    <a href="/directory" class="sidebar-back">&#8592; Directory</a>
+
+    <div class="sidebar-entity">
+      <div class="sidebar-entity-logo">
+        <img src="../prospera.jpg" alt="">
+      </div>
+      <span class="sidebar-entity-name">Próspera</span>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <nav class="sidebar-nav">
+      <a href="#overview" class="active">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5h6M5 11h4"/></svg>
+        Overview
+      </a>
+      <a href="#stats">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="10" width="3" height="4"/><rect x="6.5" y="6" width="3" height="8"/><rect x="11" y="2" width="3" height="12"/></svg>
+        At a Glance
+      </a>
+      <a href="#who">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><path d="M1 14c0-3 2-5 5-5h0c3 0 5 2 5 5"/><circle cx="11.5" cy="5.5" r="2"/><path d="M13.5 14c0-2.5-1.3-4.2-3-4.7"/></svg>
+        Who It's For
+      </a>
+      <a href="#timeline">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h6"/></svg>
+        Timeline
+      </a>
+      <a href="#platform">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+        Platform
+      </a>
+      <a href="#links">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8a3 3 0 104.24 0M9.9 6.1L6.1 9.9"/></svg>
+        Links
+      </a>
+      <a href="#faq">
+        <svg class="sidebar-nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M6.5 6a1.5 1.5 0 012.6 1c0 1-1.1 1.5-1.1 2.5M8 12v.5"/></svg>
+        FAQ
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="sidebar-cta">
+        Apply to Próspera &#8594;
+      </a>
+    </div>
+  </aside>
+
+  <!-- ─── Main content ────────────────────────────────── -->
+  <main class="main">
+
+    <!-- Profile header -->
+    <section id="overview" class="card">
+      <div class="header-photo"></div>
+      <div class="header-identity">
+        <div class="header-logo">
+          <img src="../prospera.jpg" alt="Próspera">
+        </div>
+        <div class="header-meta">
+          <h1 class="header-name">Próspera</h1>
+          <div class="header-tags">
+            <span class="tag">Charter City</span>
+            <span class="tag">ZEDE</span>
+            <span class="tag">Honduras</span>
+            <span class="tag">Roatán</span>
+            <span class="tag">Founded 2017</span>
+          </div>
+          <p class="header-desc">A startup city on the island of Roatán, Honduras, operating under its own legal code, tax structure, and governance system independent of Honduran national administration.</p>
+          <div class="header-actions">
+            <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="btn-primary">Apply to Próspera &#8594;</a>
+            <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="btn-secondary">prospera.co</a>
+            <a href="https://x.com/ProsperaGlobal" target="_blank" rel="noopener" class="btn-social" aria-label="X">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.735-8.878L1.254 2.25H8.08l4.261 5.634L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/prosperahn" target="_blank" rel="noopener" class="btn-social" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://discord.com/invite/FKSGnQWxXp" target="_blank" rel="noopener" class="btn-social" aria-label="Discord">
+              <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.056a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.074.074 0 0 0-.041-.104 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats strip -->
+    <section id="stats" class="card">
+      <div class="stats-strip">
+        <div class="stat-cell">
+          <div class="stat-num">250+</div>
+          <div class="stat-lbl">Companies</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">1,700+</div>
+          <div class="stat-lbl">Residents &amp; e-residents</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">$100M+</div>
+          <div class="stat-lbl">Investment</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">~1%</div>
+          <div class="stat-lbl">Corporate tax</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">1,000+</div>
+          <div class="stat-lbl">Acres</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">2017</div>
+          <div class="stat-lbl">Founded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who it's for -->
+    <section id="who" class="card">
+      <div class="card-header">
+        <span class="card-label">Who It's For</span>
+      </div>
+      <div class="card-body">
+        <div class="pills">
+          <span class="pill">Founders &amp; entrepreneurs</span>
+          <span class="pill">Crypto &amp; blockchain teams</span>
+          <span class="pill">Longevity &amp; biotech builders</span>
+          <span class="pill">Remote workers &amp; nomads</span>
+          <span class="pill">Medical tourists</span>
+          <span class="pill">Investors</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline + Posts -->
+    <div id="timeline" class="grid-50">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">History</span>
+        </div>
+        <div class="card-body">
+          <div class="tl-row">
+            <div class="tl-date">2013</div>
+            <div>
+              <div class="tl-title">ZEDE Law Enacted</div>
+              <div class="tl-detail">Honduras creates the legal framework for autonomous economic zones.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2017</div>
+            <div>
+              <div class="tl-title">Próspera Founded</div>
+              <div class="tl-detail">Próspera ZEDE is established on Roatán as one of the first operational zones.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2020</div>
+            <div>
+              <div class="tl-title">First Residents &amp; Businesses</div>
+              <div class="tl-detail">Próspera welcomes its first residents and businesses.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2021</div>
+            <div>
+              <div class="tl-title">e-Residency Launch</div>
+              <div class="tl-detail">Próspera introduces its e-Residency program and begins rapid business growth.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">2022</div>
+            <div>
+              <div class="tl-title">ZEDE Law Repealed</div>
+              <div class="tl-detail">The Honduran government repeals the ZEDE law, creating legal uncertainty.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">Dec 2024</div>
+            <div>
+              <div class="tl-title">Growth Milestone</div>
+              <div class="tl-detail">Próspera reaches 250 incorporated companies and resumes e-Residency applications.</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-date">Jan 2026</div>
+            <div>
+              <div class="tl-title">New Government</div>
+              <div class="tl-detail">A more business-friendly administration takes office, improving the outlook for Próspera.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-label">Posts</span>
+        </div>
+        <div class="card-body">
+          <a href="https://x.com/kunley_drukpa/status/1997860208245133664?s=20" target="_blank" rel="noopener" class="post-card">
+            <div class="post-header">
+              <img class="post-avatar" src="../kunley.jpg" alt="Kunley Drukpa">
+              <div>
+                <div class="post-name">Kunley Drukpa</div>
+                <div class="post-handle">@kunley_drukpa</div>
+              </div>
+            </div>
+            <div class="post-text">Within the space of less than a decade there has somehow emerged the foundations for an advanced wealthy high human capital city state in the tropics.</div>
+            <div class="post-date">Dec 2025</div>
+          </a>
+          <a href="https://x.com/timdraper/status/1899841452731252810" target="_blank" rel="noopener" class="post-card">
+            <div class="post-header">
+              <img class="post-avatar" src="../tim.jpg" alt="Tim Draper">
+              <div>
+                <div class="post-name">Tim Draper</div>
+                <div class="post-handle">@TimDraper</div>
+              </div>
+            </div>
+            <div class="post-text">Trip to LATAM. Perspectives: Met with Prospera, Infinita in Honduras. Prospera is the best place to do business on the planet. The next Dubai.</div>
+            <div class="post-date">Mar 12, 2025</div>
+          </a>
+          <a href="https://x.com/brian_armstrong/status/1881807446710059020" target="_blank" rel="noopener" class="post-card">
+            <div class="post-header">
+              <img class="post-avatar" src="../brian.jpg" alt="Brian Armstrong">
+              <div>
+                <div class="post-name">Brian Armstrong</div>
+                <div class="post-handle">@brian_armstrong</div>
+              </div>
+            </div>
+            <div class="post-text">We're excited to invest in @ProsperaGlobal which is creating special economic zones in various countries (the first one in Honduras, hopefully eventually in the U.S.).</div>
+            <div class="post-date">Jan 21, 2025</div>
+          </a>
+          <a href="https://x.com/balajis/status/1758767186565640429" target="_blank" rel="noopener" class="post-card">
+            <div class="post-header">
+              <img class="post-avatar" src="../balaji.jpg" alt="Balaji Srinivasan">
+              <div>
+                <div class="post-name">Balaji Srinivasan</div>
+                <div class="post-handle">@balajis</div>
+              </div>
+            </div>
+            <div class="post-text">I just got back from Próspera. It's crypto, it's bio, it's robo. And it's not San Francisco.</div>
+            <div class="post-date">Feb 17, 2024</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Platform projects -->
+    <section id="platform" class="card">
+      <div class="card-header">
+        <span class="card-label">Próspera as a Platform</span>
+      </div>
+      <div class="card-body">
+        <div class="grid-3" style="margin-bottom: 0;">
+          <a class="platform-card" href="https://www.infinita.city/" target="_blank" rel="noopener">
+            <div class="platform-img" style="background-image: url('../infinitaplatform.jpg');"></div>
+            <div class="platform-body">
+              <div class="platform-name">Infinita</div>
+              <div class="platform-desc">Longevity-focused city within Próspera for biotech and life extension research.</div>
+            </div>
+          </a>
+          <a class="platform-card" href="https://www.thecircularfactory.com/" target="_blank" rel="noopener">
+            <div class="platform-img" style="background-image: url('../circularfactoryplatform.jpg');"></div>
+            <div class="platform-body">
+              <div class="platform-name">Circular Factory</div>
+              <div class="platform-desc">Advanced manufacturing hub pioneering circular economy production.</div>
+            </div>
+          </a>
+          <a class="platform-card" href="https://www.amityage.com/bitcoin-center-roatan" target="_blank" rel="noopener">
+            <div class="platform-img" style="background-image: url('../bitcoincenter.jpg');"></div>
+            <div class="platform-body">
+              <div class="platform-name">AmityAge Bitcoin Center</div>
+              <div class="platform-desc">Education and community hub for Bitcoin adoption in the region.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to get involved -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-label">How to Get Involved</span>
+      </div>
+      <div class="card-body">
+        <div class="involve-row">
+          <div class="involve-tier">Visitor Pass</div>
+          <div class="involve-price">Free</div>
+          <div class="involve-desc">Unlimited daily access and up to 30 overnight stays per year.</div>
+        </div>
+        <div class="involve-row">
+          <div class="involve-tier">e-Residency</div>
+          <div class="involve-price">$130 / year</div>
+          <div class="involve-desc">Digital legal identity, company formation rights, and up to 30 days of physical presence per year.</div>
+        </div>
+        <div class="involve-row">
+          <div class="involve-tier">Full Residency</div>
+          <div class="involve-price">$130 + insurance</div>
+          <div class="involve-desc">Full-time physical access and all business rights.</div>
+        </div>
+        <div style="margin-top: 14px;">
+          <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 500; color: var(--black);">Apply at eprospera.hn &#8594;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section id="links" class="card">
+      <div class="card-header">
+        <span class="card-label">Links</span>
+      </div>
+      <div class="filter-row">
+        <button class="filter-tab active" onclick="filterLinks('all', this)">All</button>
+        <button class="filter-tab" onclick="filterLinks('official', this)">Official</button>
+        <button class="filter-tab" onclick="filterLinks('analysis', this)">Analysis</button>
+        <button class="filter-tab" onclick="filterLinks('community', this)">Community</button>
+      </div>
+      <div id="links-list">
+        <a href="https://www.prospera.co/en" target="_blank" rel="noopener" class="link-item" data-cat="official">
+          <div class="link-title">Próspera Official Website</div>
+          <div class="link-source">prospera.co</div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a href="https://eprospera.hn/residency" target="_blank" rel="noopener" class="link-item" data-cat="official">
+          <div class="link-title">e-Residency Application</div>
+          <div class="link-source">eprospera.hn</div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a href="https://pzgps.hn" target="_blank" rel="noopener" class="link-item" data-cat="official">
+          <div class="link-title">Próspera ZEDE Government Portal</div>
+          <div class="link-source">pzgps.hn</div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a href="https://pzgps.hn/wp-content/uploads/2019/05/ZEDE-Organic-Law.pdf" target="_blank" rel="noopener" class="link-item" data-cat="official">
+          <div class="link-title">ZEDE Organic Law</div>
+          <div class="link-source">pzgps.hn &middot; Full legal text</div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a href="https://www.astralcodexten.com/p/prospectus-on-prospera" target="_blank" rel="noopener" class="link-item" data-cat="analysis">
+          <div class="link-title">Prospectus on Próspera</div>
+          <div class="link-source">Astral Codex Ten &middot; Apr 2021</div>
+          <span class="link-arrow">›</span>
+        </a>
+        <a href="https://wiki.prospera.city/Moving%20Guide" target="_blank" rel="noopener" class="link-item" data-cat="community">
+          <div class="link-title">Próspera Community Wiki</div>
+          <div class="link-source">wiki.prospera.city &middot; Resident-maintained</div>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="card">
+      <div class="card-header">
+        <span class="card-label">FAQ</span>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is Próspera?
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Próspera is a private charter city on the island of Roatán, Honduras. Founded in 2017 under Honduras's ZEDE law, it operates as a special jurisdiction with its own legal code, tax structure, and governance independent of Honduran national administration. It is developed by Honduras Próspera Inc. and designed as a platform for business formation, residency, and innovation in sectors like biotech, crypto, and medical services.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I become a resident or start a business?
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Próspera offers three tiers. A Visitor Pass (free) allows unlimited daily access and 30 overnight stays per year. e-Residency ($130/year) provides a digital identity and business formation rights. Full Residency ($130/year plus mandatory insurance) grants full-time access and all business rights. Apply at eprospera.hn. Processing typically takes one to three days.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What are the tax conditions?
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-a">
+          <p>The corporate income tax is approximately 10%, versus Honduras's standard 25%. There is no capital gains tax, no wealth tax, and no personal income tax on income sourced outside Próspera. Business formation can be completed online in under 24 hours. The legal system is common law-based; parties may select courts in the Cayman Islands or Delaware for dispute resolution.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What companies and sectors are based there?
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Over 250 companies have incorporated in Próspera as of 2025. Active sectors include crypto and fintech, longevity and biotech research, medical tourism, real estate development, and financial services. Coinbase invested in 2025. Minicircle operates a gene therapy clinic on site. The campus includes Próspera Residences, a hotel and co-working complex, and a medical center under development.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the current legal and political situation?
+          <span class="faq-indicator">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Honduras repealed the ZEDE law in April 2022 and the Supreme Court declared the zones unconstitutional in September 2024. Próspera disputes retroactive application, citing a 50-year contractual stability agreement, and continues to operate on Roatán. The ICSID arbitration case filed under CAFTA-DR survived preliminary objections in February 2025 and is now at the merits phase. A more business-friendly administration took office in January 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      Last updated April 2026 &middot; <a href="https://ns.com">ns.com</a>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // ─── Links filter ──────────────────────────────────
+  function filterLinks(cat, btn) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#links-list .link-item').forEach(function(item) {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'flex' : 'none';
+    });
+  }
+
+  // ─── FAQ accordion ─────────────────────────────────
+  function toggleFaq(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ─── Sidebar active nav on scroll ──────────────────
+  var navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+  var anchors = [];
+  navLinks.forEach(function(link) {
+    var id = link.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) anchors.push({ el: el, link: link });
+  });
+
+  function updateNav() {
+    var scrollY = window.scrollY + 120;
+    var active = anchors[0];
+    anchors.forEach(function(a) {
+      if (a.el.offsetTop <= scrollY) active = a;
+    });
+    navLinks.forEach(function(l) { l.classList.remove('active'); });
+    if (active) active.link.classList.add('active');
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>
